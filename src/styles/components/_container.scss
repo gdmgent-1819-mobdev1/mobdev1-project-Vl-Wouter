@@ -1,0 +1,10 @@
+.container {
+  &--fill {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__hero {
+    width: 100%;
+  }
+}

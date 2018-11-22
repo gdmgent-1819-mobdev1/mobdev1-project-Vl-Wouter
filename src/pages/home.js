@@ -7,7 +7,8 @@ const homeTemplate = require('../templates/home.handlebars');
 
 export default () => {
   // Data to be passed to the template
-  const user = 'Test user';
+  // const user = 'Test user';
+  const logo = '../../src/assets/SVG/KotLifeLogo.svg';
   // Return the compiled template to the router
-  update(compile(homeTemplate)({ user }));
+  update(compile(homeTemplate)({ logo }));
 };

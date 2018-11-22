@@ -1,0 +1,18 @@
+.btn {
+  text-decoration: none;
+  color: #000;
+  padding: 5px 2px;
+  margin: 2% 0;
+  text-align: center;
+
+  &--large {
+    padding: 15px 6px;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    width: 80%;
+  }
+
+  &--primary {
+    background-color: $primary-color;
+  }
+}

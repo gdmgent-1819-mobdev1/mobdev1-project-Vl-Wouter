@@ -25,7 +25,7 @@ export default () => {
     //   const errorMessage = error.message;
     //   console.log(errorCode,errorMessage);
     // });
-    
+
     const database = firebase.database().ref('/posts');
     database.on('value', (snapshot) => {
       posts = snapshot.val();
