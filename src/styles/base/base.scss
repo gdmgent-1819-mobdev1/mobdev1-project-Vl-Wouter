@@ -1,0 +1,23 @@
+html, body {
+    // reset
+    margin: 0;
+    padding: 0;
+    background: #fefefe;
+    height: 100vh;
+    
+    #app {
+        height: 100%;
+        position: relative;
+    }
+
+    // base font styles
+    font-family: $primary-font-family;
+    font-size: $primary-font-size;
+    font-weight: $primary-font-weight;
+    line-height: $primary-line-height;
+
+}
+
+.hidden {
+  display: none;
+}

@@ -17,6 +17,7 @@ const router = new Navigo(window.location.origin, true);
 routes.forEach((route) => {
   router.on(route.path, () => {
     route.view();
+    router.updatePageLinks();
   });
 });
 
@@ -26,11 +27,5 @@ router.notFound(() => {
 });
 router.resolve();
 window.onload = () => {
-  document.onclick = (e) => {
-    e.preventDefault();
-    const target = e.target.getAttribute('href');
-    if (target != null) {
-      router.navigate(target);
-    }
-  };
+  router.navigate(window.location.hash.split('/')[1]);
 };

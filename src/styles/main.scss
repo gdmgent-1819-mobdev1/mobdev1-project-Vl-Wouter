@@ -1,40 +1,45 @@
 @import "../../node_modules/mapbox-gl/dist/mapbox-gl.css";
 // Generic styling
-body {
-    font-size: 12px;
-    margin: 0 auto;
-    background: #fefefe;
-    height: 100vh;
+// body {
+//     font-size: 12px;
+//     margin: 0 auto;
+//     background: #fefefe;
+//     height: 100vh;
 
-    #app {
-        height: 100%;
-        position: relative;
-    }
-    #map {
-        top: 0;
-        bottom: 0;
-        width: 500px;
-        height: 200px;
-        text-align: initial;
-        margin: 0 auto;
-    }
-}
+//     #app {
+//         height: 100%;
+//         position: relative;
+//     }
+//     #map {
+//         top: 0;
+//         bottom: 0;
+//         width: 500px;
+//         height: 200px;
+//         text-align: initial;
+//         margin: 0 auto;
+//     }
+// }
 
 
 // 1. Abstracts
 @import 'abstracts/colors',
-        'abstracts/fonts';
+        'abstracts/fonts',
+        'abstracts/variables';
 
-// 2. Components
+// 2. Base
+@import 'base/base';
+
+// 3. Components
 @import 'components/container',
         'components/footer',
         'components/header',
-        'components/button';
+        'components/button',
+        'components/form';
 
-// 3. Layout
+// 4. Layout
 @import 'layout/flex';
 
-// 4. Pages
+// 5. Pages
 @import 'pages/page',
         'pages/about',
         'pages/home';
