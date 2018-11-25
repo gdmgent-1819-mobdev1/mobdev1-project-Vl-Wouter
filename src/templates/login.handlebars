@@ -1,4 +1,16 @@
-<form>
-  <input type="checkbox" name="test" id="test">Test<br>
-  <input type="radio" name="test" id="test2">Test 2<br>
-</form>
+<div class="container container--fill flex flex--center">
+  <form class='form'>
+    <div class="form__field">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="jan.peeters@provider.com">
+    </div>
+    <div class="form__field">
+      <label for="pass">Password</label>
+      <input type="password" id="pass">
+    </div>
+    <div class="form__field">
+      <input type="submit" class='btn btn--large btn--primary' id='login-btn' value="Log In">
+      <a href="/" class='btn btn--large' data-navigo>Back</a>
+    </div>
+  </form>
+</div>
