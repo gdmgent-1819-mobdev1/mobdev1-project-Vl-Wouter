@@ -1,10 +1,12 @@
 // Pages
 import HomeView from './pages/home';
-import LoginView from './pages/login';
-import RegisterView from './pages/register';
+import AboutView from './pages/about';
+import FirebaseView from './pages/firebase-example';
+import MapboxView from './pages/mapbox-example';
 
 export default [
   { path: '/', view: HomeView },
-  { path: '/login', view: LoginView },
-  { path: '/register', view: RegisterView },
+  { path: '/about', view: AboutView },
+  { path: '/firebase', view: FirebaseView },
+  { path: '/mapbox', view: MapboxView },
 ];
