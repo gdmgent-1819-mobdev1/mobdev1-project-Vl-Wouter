@@ -29,12 +29,11 @@ export default () => {
     if (profile) {
       status = true;
       user = 'user';
-      
     } else {
       user = 'new person';
     }
     update(compile(homeTemplate)({ status, logo, user }));
-    if(profile) {
+    if (profile) {
       document.querySelector('#logout-btn').addEventListener('click', logout);
     }
   }
