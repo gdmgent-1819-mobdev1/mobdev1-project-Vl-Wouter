@@ -11,6 +11,7 @@ const homeTemplate = require('../templates/home.handlebars');
 
 const logout = () => {
   firebase.auth().signOut()
+    .then(window.location.reload())
     .catch(error => console.log(error.message));
 };
 
@@ -20,7 +21,7 @@ export default () => {
   let user = null;
   let status = false;
   // Return the compiled template to the router
-  update(compile(homeTemplate)({ status, logo, user }));
+  // update(compile(homeTemplate)({ status, logo, user }));
 
   if (firebase) {
     const profile = firebase.auth().currentUser;
@@ -28,10 +29,13 @@ export default () => {
     if (profile) {
       status = true;
       user = 'user';
-      document.querySelector('#logout-btn').addEventListener('click', logout);
+      
     } else {
       user = 'new person';
     }
     update(compile(homeTemplate)({ status, logo, user }));
+    if(profile) {
+      document.querySelector('#logout-btn').addEventListener('click', logout);
+    }
   }
 };

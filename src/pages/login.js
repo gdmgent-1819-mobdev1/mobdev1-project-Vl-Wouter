@@ -10,7 +10,7 @@ const loginTemplate = require('../templates/login.handlebars');
 const login = (email, pass) => {
   console.log(email);
   firebase.auth().signInWithEmailAndPassword(email, pass)
-    .then(() => '')
+    .then(() => window.location.replace('/'))
     .catch(error => console.log(error));
 };
 
