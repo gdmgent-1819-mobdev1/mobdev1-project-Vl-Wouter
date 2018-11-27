@@ -1,0 +1,55 @@
+<div class="container container--fill flex flex--center">
+    <form class='form'>
+        <div class="form__field">
+            <label for="fname">Voornaam</label>
+            <input type="text" id="fname" placeholder="Jan" required>
+        </div>
+        <div class="form__field">
+            <label for="lname">Achternaam</label>
+            <input type="text" id="lname" placeholder="Peeters" required>
+        </div>
+        <div class="form__field">
+            <label for="email">Email</label>
+            <input type="email" id="mail" placeholder="jan.peeters@provider.com" required>
+        </div>
+        <div class="form__field">
+            <label for="pass">Wachtwoord</label>
+            <input type="password" id="pass" required>
+        </div>
+        <div class="form__field">
+            <label for="pass">Bevestig wachtwoord</label>
+            <input type="password" id="confirmpass" required>
+        </div>
+        <div class="form__field">
+            <label for="address">Adres</label>
+            <input type="text" id="address" placeholder="Dorpsplein 18" required>
+        </div>
+        <div class="form__field">
+            <label for="postcode">Postcode</label>
+            <input type="number" id="postcode" placeholder="3000" size='4' required>
+        </div>
+        <div class="form__field">
+            <label for="city">Gemeente</label>
+            <input type="text" id="city" placeholder="Leuven" required>
+        </div>
+        <div class="form__field">
+            <label for="phone">Telefoonnummer</label>
+            <input type="tel" id="phone" placeholder="+324 71 58 76 84" required>
+            <span class='form__field--note'>+324 71 58 76 48</span>
+        </div>
+        <div class="form__field">
+            <input type="radio" name='type' value='student'>Ik ben student<br>
+            <input type="radio" name='type' value='owner' checked>Ik ben eigenaar<br>
+        </div>
+        <div class="form__field form__field--studentonly hidden">
+            <label for="school">School</label>
+            <select name="school" id="school">
+                <option disabled selected>Kies een school</option>
+                
+            </select>
+        </div>
+        <div class="form__field">
+          <input type="submit" id='register-btn' class='btn btn-primary' value="Registreer">
+        </div>
+    </form>
+</div>

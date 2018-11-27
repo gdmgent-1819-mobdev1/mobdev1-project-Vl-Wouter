@@ -7,7 +7,7 @@ import { getInstance } from '../firebase/firebase';
 const firebase = getInstance();
 
 // Import the template to use
-const homeTemplate = require('../templates/home.handlebars');
+const menuTemplate = require('../templates/menu.handlebars');
 
 const logout = () => {
   firebase.auth().signOut()
@@ -20,7 +20,6 @@ export default () => {
   let user = null;
   let status = false;
   // Return the compiled template to the router
-  update(compile(homeTemplate)({ status, logo, user }));
 
   if (firebase) {
     const profile = firebase.auth().currentUser;
@@ -30,8 +29,8 @@ export default () => {
       user = 'user';
       document.querySelector('#logout-btn').addEventListener('click', logout);
     } else {
-      user = 'new person';
+      window.location.href = '/';
     }
-    update(compile(homeTemplate)({ status, logo, user }));
+    update(compile(menuTemplate)({ status, logo, user }));
   }
 };

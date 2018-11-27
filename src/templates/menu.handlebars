@@ -2,12 +2,6 @@
   <div class="container__hero flex flex--col flex--center">
     <img src='{{ logo }}' alt='Logo' class='title__logo'>
     <p>{{ user }}</p>
-    {{#if status}}
     <button type='button' id='logout-btn' class='btn btn--large btn--primary'>Log Out</button>
-    {{else}}
-    <a href="/login" class='btn btn--large btn--primary' data-navigo >Ik ben al een gebruiker</a>
-    <a href="/register" class='btn btn--large btn--primary' data-navigo >Ik wil een nieuw account</a>
-    <a href="/firebase" data-navigo >Test</a>
-    {{/if}}
   </div>
 </div>
