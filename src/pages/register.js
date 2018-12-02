@@ -1,11 +1,65 @@
 import { compile } from 'handlebars';
 import update from '../helpers/update';
+import { Student, Owner } from '../helpers/classes';
 
-const { getInstance } = require('../firebase/firebase');
+const { getInstance, getDb } = require('../firebase/firebase');
 
 const firebase = getInstance();
+const db = getDb();
 
 const registerTemplate = require('../templates/register.handlebars');
+
+// Functions
+const validateForm = () => {
+  const password1 = document.querySelector('#pass').value;
+  const password2 = document.querySelector('#confirmpass').value;
+
+  return password1 === password2;
+};
+
+const getValue = (id) => {
+  return document.querySelector(`#${id}`).value;
+};
+
+const fireRegister = (email, password) => {
+  return new Promise((resolve, reject) => {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        resolve(user);
+      })
+      .catch(error => reject(error));
+  });
+};
+
+const registerUser = () => {
+  if (validateForm) {
+    const firstName = getValue('fname');
+    const lastName = getValue('lname');
+    const email = getValue('mail');
+    const password = getValue('pass');
+    const address = getValue('address');
+    const postcode = getValue('postcode');
+    const city = getValue('city');
+    const phone = getValue('phone');
+    const type = document.querySelector('input[name=type]:checked').value;
+    const school = getValue('school');
+    let profile = null;
+    fireRegister(email, password)
+      .then((user) => {
+        // console.log(user);
+        const id = user.user.uid;
+        if (type === 'student') {
+          profile = new Student(id, email, firstName, lastName, address, postcode, city, phone, type, school);
+        } else {
+          profile = new Owner(id, email, firstName, lastName, address, postcode, city, phone, type);
+        }
+        db.ref(`users/${id}`).set(profile)
+          .then(window.location.replace('/'))
+          .catch(error => console.log(error.message));
+      })
+      .catch(error => console.log(error.message));
+  }
+};
 
 export default () => {
   // add data
@@ -15,7 +69,6 @@ export default () => {
   // add logic
   const buttons = document.querySelectorAll('input[type=radio]');
   const submit = document.querySelector('#register-btn');
-  const db = firebase.firestore();
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
       const type = document.querySelector('input[type=radio]:checked').value;
@@ -26,48 +79,9 @@ export default () => {
       }
     });
   });
-
-  const validateForm = () => {
-    const password1 = document.querySelector('#pass').value;
-    const password2 = document.querySelector('#confirmpass').value;
-
-    return password1 === password2;
-  }
+  // rewrite logic for submit
   submit.addEventListener('click', (e) => {
-    if (validateForm()) {
-      const fname = document.querySelector('#fname').value;
-      const lname = document.querySelector('#lname').value;
-      const email = document.querySelector('#mail').value;
-      const pass = document.querySelector('#pass').value;
-      const address = document.querySelector('#address').value;
-      const postcode = document.querySelector('#postcode').value;
-      const city = document.querySelector('#city').value;
-      const phone = document.querySelector('#phone').value;
-      const type = document.querySelector('input[type=radio]:checked').value;
-      let school = null;
-      if (type === 'student') {
-        school = document.querySelector('#school').value;
-      }
-      firebase.auth().createUserWithEmailAndPassword(email, pass)
-        .then((user) => {
-          user.displayName = `${fname}.${lname}`;
-          const id = user.user.uid;
-          db.collection('users').doc(id).set({
-            address: address,
-            postcode: postcode,
-            city: city,
-            phone: phone,
-            type: type,
-            school: school
-          }).then(() => window.location.replace('/'))
-            .catch(error => alert(error.message));
-        });
-    } else {
-      alert('Passwords do not match');
-    }
+    e.preventDefault();
+    registerUser();
   });
-
-  if (!firebase.auth().currentUser) {
-    console.log('no user logged in');
-  }
 };

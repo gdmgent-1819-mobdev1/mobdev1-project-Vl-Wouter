@@ -12,9 +12,21 @@ const config = {
 };
 
 let instance = null;
+let db = null;
 
 const initFirebase = () => {
   instance = firebaseInstance.initializeApp(config);
+};
+
+const initDb = () => {
+  db = firebaseInstance.database();
+};
+
+const getDb = () => {
+  if (!db) {
+    initDb();
+  }
+  return db;
 };
 
 const getInstance = () => {
@@ -26,4 +38,6 @@ const getInstance = () => {
 export {
   initFirebase,
   getInstance,
+  initDb,
+  getDb,
 };
