@@ -1,3 +1,10 @@
 .title__logo {
   max-width: 50%;
 }
+
+.background {
+  background-image: linear-gradient(#ffffff60, #ffffff60) , url('../../../src/assets/1x/background-gent.jpg');
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
