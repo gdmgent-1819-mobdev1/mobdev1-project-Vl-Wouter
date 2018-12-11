@@ -26,7 +26,32 @@ class Owner extends User {
   }
 }
 
+class Room {
+  constructor(prijs, waarborg, type, opp, verdieping, personen, toilet, douche, bad, keuken, meubels, beschrijvingMeubels, foto, adres, postcode, gemeente, coords, totaal, opmerking, kotbaas) {
+    this.prijs = prijs;
+    this.waarborg = waarborg;
+    this.type = type;
+    this.opp = opp;
+    this.verdieping = verdieping;
+    this.personen = personen;
+    this.toilet = toilet;
+    this.douche = douche;
+    this.bad = bad;
+    this.meubels = meubels;
+    this.beschrijving_meubels = beschrijvingMeubels;
+    this.foto = foto;
+    this.adres = adres;
+    this.postcode = postcode;
+    this.gemeente = gemeente;
+    this.coords = coords;
+    this.totaal = totaal;
+    this.opmerking = opmerking;
+    this.kotbaas = kotbaas;
+  }
+}
+
 export {
   Student,
   Owner,
+  Room,
 };

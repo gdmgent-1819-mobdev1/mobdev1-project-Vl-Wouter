@@ -1,0 +1,40 @@
+.row {
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+}
+
+@mixin generateCols($suffix) {
+  $cols: 12;
+  $bw: 0;
+
+  @if ($suffix == 'xs') {
+    $bw: 0;
+  } @else if ($suffix == 'sm') {
+    $bw: 321;
+  } @else if ($suffix == 'md') {
+    $bw: 481;
+  } @else if ($suffix == 'lg') {
+    $bw: 769;
+  } @else if ($suffix == 'xl') {
+    $bw: 961;
+  } @else if ($suffix == 'xxl') {
+    $bw: 1141;
+  }
+
+  @media (min-width: #{$bw}px) {
+    @for $i from 1 through $cols {
+      .col-#{$suffix}-#{$i} {
+        float: left;
+        display: block;
+        padding: 0 2%;
+        box-sizing: border-box;
+        width: 100% / ($cols/$i);
+      }
+    }
+  }
+}
+
+@include generateCols('xs');
+@include generateCols('sm');
+@include generateCols('md');

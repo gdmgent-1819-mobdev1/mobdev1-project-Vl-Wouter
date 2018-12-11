@@ -1,5 +1,24 @@
 {{> header }}
-<div class="page list">
+<div class="container">
+  <h1>{{ title }}</h1>
+  <div class="row">
+    <div class="col-sm-12">
+      {{#if owner}}
+        <a href="#/rooms/new">Nieuw</a>
+      {{/if}}
+        <button>Filter</button>
+        <button>Mode</button>
+    </div>
+  </div>
+  <div class="row">
+    {{#if rooms}}
+    <p>look at that... rooms!</p>
+    {{else}}
+    <p>This bitch empty</p>
+    {{/if}}
+  </div>
+</div>
+{{!-- <div class="page list">
   <h1>{{title}}</h1>
   <div class="body">
     {{#if loading}}
@@ -13,5 +32,5 @@
     {{/if}}
     Go to <a href="/" data-navigo>Home page</a>
   </div>
-</div>
+</div> --}}
 {{> footer }}

@@ -28,19 +28,23 @@
         'abstracts/height';
 
 // 2. Base
-@import 'base/base';
+@import 'base/base',
+        'base/grid';
 
 // 3. Components
 @import 'components/container',
         'components/footer',
         'components/header',
         'components/button',
-        'components/form';
+        'components/form',
+        'components/card';
 
 // 4. Layout
-@import 'layout/flex';
+@import 'layout/flex',
+        'layout/text-align';
 
 // 5. Pages
 @import 'pages/page',
         'pages/about',
-        'pages/home';
+        'pages/home',
+        'pages/dash';

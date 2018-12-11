@@ -1,0 +1,9 @@
+@mixin generateAlign($alignment) {
+  .text--#{$alignment} {
+    text-align: #{$alignment};
+  }
+}
+
+@include generateAlign('left');
+@include generateAlign('center');
+@include generateAlign('right');

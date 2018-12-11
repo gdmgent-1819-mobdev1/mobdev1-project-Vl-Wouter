@@ -1,18 +1,20 @@
 // Pages
 import HomeView from './pages/home';
-import AboutView from './pages/about';
-import FirebaseView from './pages/firebase-example';
-import MapboxView from './pages/mapbox-example';
 import LoginView from './pages/login';
 import RegisterView from './pages/register';
 import MenuView from './pages/menu';
+import DashView from './pages/dashboard';
+import ListView from './pages/list';
+import ProfileView from './pages/profile';
+import NewView from './pages/new';
 
 export default [
   { path: '/', view: HomeView },
-  { path: '/about', view: AboutView },
-  { path: '/firebase', view: FirebaseView },
-  { path: '/mapbox', view: MapboxView },
   { path: '/login', view: LoginView },
   { path: '/register', view: RegisterView },
   { path: '/menu', view: MenuView },
+  { path: '/dash', view: DashView },
+  { path: '/rooms/list', view: ListView },
+  { path: '/profile', view: ProfileView },
+  { path: '/rooms/new', view: NewView },
 ];

@@ -10,11 +10,14 @@ const loginTemplate = require('../templates/login.handlebars');
 const login = (email, pass) => {
   console.log(email);
   firebase.auth().signInWithEmailAndPassword(email, pass)
-    .then(() => window.location.replace('/'))
+    .then(() => window.location.replace('#/dash'))
     .catch(error => console.log(error));
 };
 
 export default () => {
+  if(firebase.auth().currentUser) {
+    window.location.replace('#/dash');
+  }
   update(compile(loginTemplate)());
 
   const loginbtn = document.querySelector('#login-btn');

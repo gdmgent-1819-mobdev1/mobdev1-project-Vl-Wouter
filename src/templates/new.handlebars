@@ -1,0 +1,40 @@
+{{> header }}
+<div class="container">
+  <form action="" class="form row">
+    <div class="row">
+      <div class="form__field col-sm-12">
+        <label for="address">Adres</label>
+        <input type="text" placeholder='Korenmarkt 2, 9000 Gent'>
+      </div>
+      <div class="form__field col-sm-6">
+        <label for="price">Prijs</label>
+        <input type="number" id="price">
+      </div>
+      <div class="form__field col-sm-6">
+        <label for="deposit">Waarborg</label>
+        <input type="number" id="deposit">
+      </div>
+      <div class="form__field col-sm-12">
+        <label for="type">Type</label>
+        <select name="type" id="type">
+          <option disabled selected>Kies een type</option>
+          <option value="Kamer">Kamer</option>
+          <option value="Studio">Studio</option>
+        </select>
+      </div>
+      <div class="form__field col-sm-4">
+        <label for="opp">Opp. (m²)</label>
+        <input type="number" id="opp">
+      </div>
+      <div class="form__field col-sm-4">
+        <label for="verdieping">Verdieping</label>
+        <input type="number" id="verdieping">
+      </div>
+      <div class="form__field col-sm-4">
+        <label for="personen">Personen</label>
+        <input type="number" id="personen">
+      </div>
+    </div>
+  </form>
+</div>
+{{> footer }}
