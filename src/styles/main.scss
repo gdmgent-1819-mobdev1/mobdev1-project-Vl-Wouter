@@ -22,9 +22,9 @@
 
 
 // 1. Abstracts
-@import 'abstracts/colors',
+@import 'abstracts/variables',
+        'abstracts/colors',
         'abstracts/fonts',
-        'abstracts/variables',
         'abstracts/height';
 
 // 2. Base

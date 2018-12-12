@@ -1,4 +1,7 @@
-$main-color: red;
-$secondary-color: grey;
+.text-primary {
+  color: $primary-color;
+}
 
-// https://coolors.co/0a2463-3e92cc-fffaff-d8315b-1e1b18
+.text-light {
+  color: $light-color;
+}

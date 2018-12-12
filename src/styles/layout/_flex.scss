@@ -8,4 +8,8 @@
   &--col {
     flex-flow: column
   }
+
+  &--justify-around {
+    justify-content: space-around
+  }
 }
