@@ -1,14 +1,15 @@
 .header {
-  height: 128px;
   width: 100%;
-  margin-bottom: 5%;
+  padding: 3% 0 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 6px 15px #00000030;
 
-  &__logo {
-    height: 50%;
-    fill: #fff;
+  .row {
+    div {
+      margin: 0 auto;
+      text-align: center;
+    }
   }
 }

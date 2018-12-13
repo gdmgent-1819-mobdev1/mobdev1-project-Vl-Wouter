@@ -16,8 +16,16 @@ html, body {
     font-weight: $base-font-weight;
     line-height: $base-line-height;
 
+    $size: 6;
+    @for $i from 1 through $size {
+        h#{$i} {
+            font-family: $header-font-family;
+            font-size: #{$header-font-size - ($i * $i) / 2};
+            font-weight: $header-font-weight;
+            line-height: $header-line-height;
+        }
+    }
 }
 
-.hidden {
-  display: none;
-}
+
+

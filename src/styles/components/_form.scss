@@ -15,6 +15,7 @@
     }
 
     &__input, &__select {
+        background: #fcfcfc;
         display: block;
         width: auto;
         box-sizing: border-box;
@@ -27,6 +28,12 @@
     input[type=radio] {
         display: inline-block;
         width: auto;
+    }
+
+    input[type=submit] {
+        color: $light-color;
+        font-family: $base-font-family;
+        font-size: $base-font-size;
     }
 
 }
