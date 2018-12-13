@@ -15,6 +15,7 @@
     }
 
     &__input, &__select {
+        font-family: $base-font-family;
         background: #fcfcfc;
         display: block;
         width: auto;

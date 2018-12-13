@@ -15,15 +15,16 @@ const logout = () => {
 
 export default () => {
   const status = firebase.auth().currentUser;
+  const title = 'Welcome';
   let loading = true;
-  update(compile(dashTemplate)({ loading }));
+  update(compile(dashTemplate)({ title, loading }));
   if (status) {
     let data = null;
     db.ref(`users/${status.uid}`).once('value')
       .then((snapshot) => {
         data = snapshot.val();
         loading = false;
-        update(compile(dashTemplate)({ data, loading }));
+        update(compile(dashTemplate)({ title, data, loading }));
         const logoutbtn = document.querySelector('#logout-btn');
         logoutbtn.addEventListener('click', logout);
       });
