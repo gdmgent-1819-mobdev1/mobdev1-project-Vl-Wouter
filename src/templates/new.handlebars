@@ -4,20 +4,20 @@
     <div class="row">
       <div class="form__field col-sm-12">
         <label for="address">Adres</label>
-        <input type="text" placeholder='Korenmarkt 2, 9000 Gent' class='form__input'>
-        <span>Coordinates</span>
+        <input id='address' type="text" placeholder='Korenmarkt 2, 9000 Gent' class='form__input' required>
+        <span><span id='lng'>Lng</span>, <span id="lat">Lat</span></span>
       </div>
       <div class="form__field col-sm-6">
         <label for="price">Prijs</label>
-        <input type="number" id="price" class='form__input'>
+        <input type="number" id="price" class='form__input' required>
       </div>
       <div class="form__field col-sm-6">
         <label for="deposit">Waarborg</label>
-        <input type="number" id="deposit" class='form__input'>
+        <input type="number" id="deposit" class='form__input' required>
       </div>
       <div class="form__field col-sm-12">
         <label for="type">Type</label>
-        <select name="type" id="type" class='form__input'>
+        <select name="type" id="type" class='form__input' required>
           <option disabled selected>Kies een type</option>
           <option value="Kamer">Kamer</option>
           <option value="Studio">Studio</option>
@@ -25,19 +25,19 @@
       </div>
       <div class="form__field col-sm-4">
         <label for="opp">Opp. (m²)</label>
-        <input type="number" id="opp" class='form__input'>
+        <input type="number" id="opp" class='form__input' required>
       </div>
       <div class="form__field col-sm-4">
         <label for="verdieping">Verdieping</label>
-        <input type="number" id="verdieping" class='form__input'>
+        <input type="number" id="verdieping" class='form__input' required>
       </div>
       <div class="form__field col-sm-4">
         <label for="personen">Personen</label>
-        <input type="number" id="personen" class='form__input'>
+        <input type="number" id="personen" class='form__input' required>
       </div>
       <div class="form__field col-sm-6">
         <label for="douche">Douche</label>
-        <select name="douche" id="douche" class="form__input">
+        <select name="douche" id="douche" class="form__input" required>
           <option value="ja">Ja</option>
           <option value="gedeeld">Gedeeld</option>
           <option value="nee">Nee</option>
@@ -45,7 +45,7 @@
       </div>
       <div class="form__field col-sm-6">
         <label for="toilet">Toilet</label>
-        <select name="toilet" id="toilet" class="form__input">
+        <select name="toilet" id="toilet" class="form__input" required>
           <option value="ja">Ja</option>
           <option value="gedeeld">Gedeeld</option>
           <option value="nee">Nee</option>
@@ -53,7 +53,7 @@
       </div>
       <div class="form__field col-sm-6">
         <label for="bad">Bad</label>
-        <select name="bad" id="bad" class="form__input">
+        <select name="bad" id="bad" class="form__input" required>
           <option value="ja">Ja</option>
           <option value="gedeeld">Gedeeld</option>
           <option value="nee">Nee</option>
@@ -61,7 +61,7 @@
       </div>
       <div class="form__field col-sm-6">
         <label for="keuken">Keuken</label>
-        <select name="keuken" id="keuken" class="form__input">
+        <select name="keuken" id="keuken" class="form__input" required>
           <option value="ja">Ja</option>
           <option value="gedeeld">Gedeeld</option>
           <option value="nee">Nee</option>
@@ -69,7 +69,7 @@
       </div>
       <div class="form__field col-sm-12">
         <label for="meubels">Bemeubeld</label>
-        <select name="meubels" id="meubels" class="form__input">
+        <select name="meubels" id="meubels" class="form__input" required>
           <option value="ja">Ja</option>
           <option value="nee" selected>Nee</option>
         </select>
@@ -77,13 +77,20 @@
       </div>
       <div class="form__field col-sm-6">
         <label for="image">Foto</label>
-        <input type="file" name="foto" id="image" class=''>
+        <input type="file" name="foto" id="image" disabled class=''>
       </div>
       <div class="form__field col-sm-6">
         <label for="totaal">Totaal entiteiten</label>
-        <input type="number" name="" id="totaal" class="form__input">
+        <input type="number" name="" id="totaal" class="form__input" required>
+      </div>
+      <div class="form__field col-sm-12">
+        <label for="comment">Opmerkingen</label>
+        <textarea name="opmerking" id="comment" cols="30" rows="10" placeholder="Vrije ingave" class='form__input'></textarea>
+      </div>
+      <div class="form__field col-sm-12">
+        <input type="submit" value="Toevoegen" id="addKot" class="btn btn--large btn--primary">
       </div>
     </div>
   </form>
-  <a href="#/" class='btn btn--large text-danger'>Back</a>
+  <a href="#/rooms/list" class='btn btn--large text-danger'>Back</a>
 </div>

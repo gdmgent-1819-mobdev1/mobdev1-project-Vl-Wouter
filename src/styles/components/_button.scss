@@ -1,6 +1,13 @@
+button {
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  font-weight: $base-font-weight;
+  line-height: $base-line-height;
+}
+
 .btn {
   text-decoration: none;
-  padding: 5px 2px;
+  padding: 7px 4px;
   margin: 2% 0;
   text-align: center;
   border: none;
@@ -14,5 +21,6 @@
 
   &--primary {
     background-color: $primary-color;
+    color: $light-color;
   }
 }

@@ -1,13 +1,22 @@
 .card {
   width: 100%;
   box-sizing: border-box;
-  padding: 1% 3%;
-  border-radius: 10px;
-  border: 1px solid #00000030;
+  border-radius: 0 0 10px 10px;
+  background-color: $light-color;
+  box-shadow: 0 5px 15px #00000030;
+
+  &__image {
+    width: 100%;
+    height: 128px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
 
   &__header {
-    border-bottom: 1px solid #00000060;
-    line-height: 0.3;
+    line-height: 0.9;
   }
 
   &__name {
@@ -15,29 +24,14 @@
   }
 
   &__title {
-    font-weight: 700;
-    font-size: 1.2rem;
+    padding: 0;
+    margin: 2% 4%;
     &--right {
       text-align: right;
     }
   }
 
   &__content {
-    display: flex;
-    justify-content: space-between;
-    text-align: left;
-
-    p {
-      padding: 1%;
-    }
-  }
-
-  &__image {
-    flex-basis: 128px;
-    flex-shrink: 0;
-    flex-grow: 0;
-    width: 128px;
-    height: 128px;
-    background-color: #00000080;
+    padding: 0 4%;
   }
 }

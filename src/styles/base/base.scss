@@ -22,8 +22,20 @@ html, body {
             font-family: $header-font-family;
             font-size: #{$header-font-size - ($i * $i) / 2};
             font-weight: $header-font-weight;
-            line-height: $header-line-height;
+            line-height: #{$header-line-height / $i + 0.5};
         }
+    }
+
+    .text-bold {
+      font-weight: 700;
+    }
+
+    a:link, a:hover, a:visited, a:active {
+      text-decoration: none;
+    }
+
+    a .card {
+      color: $dark-color;
     }
 }
 

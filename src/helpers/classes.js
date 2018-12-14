@@ -27,26 +27,41 @@ class Owner extends User {
 }
 
 class Room {
-  constructor(prijs, waarborg, type, opp, verdieping, personen, toilet, douche, bad, keuken, meubels, beschrijvingMeubels, foto, adres, postcode, gemeente, coords, totaal, opmerking, kotbaas) {
-    this.prijs = prijs;
-    this.waarborg = waarborg;
-    this.type = type;
-    this.opp = opp;
-    this.verdieping = verdieping;
-    this.personen = personen;
-    this.toilet = toilet;
-    this.douche = douche;
-    this.bad = bad;
-    this.meubels = meubels;
-    this.beschrijving_meubels = beschrijvingMeubels;
-    this.foto = foto;
-    this.adres = adres;
-    this.postcode = postcode;
-    this.gemeente = gemeente;
-    this.coords = coords;
-    this.totaal = totaal;
-    this.opmerking = opmerking;
-    this.kotbaas = kotbaas;
+  constructor(directions, price, details, photo,  extra) {
+    this.directions = {
+      address: directions.address,
+      coords: {
+        lng: directions.lng,
+        lat: directions.lat,
+      },
+    };
+
+    this.price = {
+      price: price.price,
+      deposit: price.deposit,
+    };
+
+    this.info = {
+      owner: details.owner,
+      type: details.type,
+      surface: details.surface,
+      floor: details.floor,
+      total: details.total,
+      people: details.people,
+    }
+
+    this.details = {
+      shower: details.shower,
+      toilet: details.toilet,
+      bath: details.bath,
+      kitchen: details.kitchen,
+      furniture: details.furniture,
+      furniture_description: details.furn_description,
+    }
+
+    this.photo = photo;
+
+    this.extra = extra;
   }
 }
 

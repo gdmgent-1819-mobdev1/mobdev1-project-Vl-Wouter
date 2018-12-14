@@ -4,15 +4,32 @@
   <div class="row">
     <div class="col-sm-12">
       {{#if owner}}
-        <a href="#/rooms/new">Nieuw</a>
+        <a class='btn btn--primary text-light' href="#/rooms/new">Nieuw</a>
       {{/if}}
-        <button>Filter</button>
-        <button>Mode</button>
+        <button class='btn btn--primary'>Filter</button>
+        <button class='btn btn--primary'>Mode</button>
     </div>
   </div>
   <div class="row">
     {{#if rooms}}
-    <p>look at that... rooms!</p>
+      {{#each rooms}}
+      <div class="col-sm-12">
+        <a href="#/rooms/{{@key}}" data-navigo>
+          <div class="card">
+            <div class="card__image">
+              <img src="{{this.photo}}" alt="">
+            </div>
+            <div class="card__header">
+              <h5 class='card__title'>{{this.directions.address}}</h5>
+            </div>
+            <div class="card__content">
+              <p><span class='text-secondary'>{{this.info.type}}</span> - <span class='text-bold'>€{{this.price.price}}</span></p>
+              <p>{{this.extra}}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      {{/each}}
     {{else}}
     <p>This bitch empty</p>
     {{/if}}
