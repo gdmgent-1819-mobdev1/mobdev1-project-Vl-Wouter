@@ -1,6 +1,7 @@
 import { compile } from 'handlebars';
 import update from '../helpers/update';
 import { getInstance, getDb } from '../firebase/firebase';
+import menuHelper from '../helpers/nav-functions';
 
 const firebase = getInstance();
 const db = getDb();
@@ -34,6 +35,11 @@ export default () => {
             update(compile(listTemplate)({
               loading, title: 'Alle koten', owner, student, rooms,
             }));
+            const menuBtn = document.querySelector('#toggleMenu');
+            menuBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              menuHelper.toggleMenu();
+            });
           });
       });
   } else {

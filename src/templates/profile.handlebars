@@ -1,3 +1,40 @@
 {{> header }}
-
+<section class="container">
+  <div class="row flex--align-center">
+    <div class="col-sm-4">
+      <div class="profile__image">
+        <img src="{{ usericon }}" alt="user icon">
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      {{#if owner}}
+      <h4 class="text-secondary">Kotbaas</h4>
+      {{else}}
+      <h4 class="text-secondary">Student</h4>
+      {{/if}}
+    </div>
+    <div class="col-sm-12">
+      <p>{{ user.email }}</p>
+    </div>
+    <div class="col-sm-12">
+      <p>{{ user.address }}</p>
+      <p>{{ user.postcode }}, {{ user.city }}</p>
+    </div>
+    <div class="col-sm-6 text--center">
+      <a href="#/messages" class="btn btn--large btn--primary">Berichten</a>
+    </div>
+    <div class="col-sm-6 text--center">
+      {{#if owner}}
+      <a href="#/rooms/new" class="btn btn--large btn--primary">Nieuw kot</a>
+      {{else}}
+      <a href="#/favourites" class="btn btn--large btn--primary">Favorieten</a>
+      {{/if}}
+    </div>
+  </div>
+</section>
 {{> footer }}

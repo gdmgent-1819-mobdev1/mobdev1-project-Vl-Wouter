@@ -9,7 +9,7 @@ const header = require('./partials/header.handlebars');
 const footer = require('./partials/footer.handlebars');
 
 // Register the partial components
-handlebars.registerPartial('header', compile(header)({ logo: '<img src="../src/assets/SVG/Kotlife_Logo.svg" alt="logo" class="header__logo">' }));
+handlebars.registerPartial('header', compile(header)({ logo: '<img src="../src/assets/SVG/Kotlife_Logo.svg" alt="logo">' }));
 handlebars.registerPartial('footer', compile(footer)());
 
 // Router logic to load the correct template when needed

@@ -1,5 +1,10 @@
 .flex {
   display: flex;
+
+  &--align-center {
+    align-items: center;
+  }
+
   &--center {
     justify-content: center;
     align-items: center;

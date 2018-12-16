@@ -1,44 +1,47 @@
+{{> header}}
 {{#if loading}}
   <div class="container container--fill flex flex--center">
     <h1>loading...</h1>
   </div>
 {{else}}
-<div class="container  dash container--fill">
-  {{> header}}
-  <div class="container p-foot text--center">
-    <h2>Welkom terug, {{ data.first_name }}</h2>
-    <p>Dit is wat je gemist hebt</p>
-    <div class="row anglebg">
-      <div class="col-sm-12">
-        <p><i class="fas fa-envelope"></i> 1 nieuw bericht</p>
-        <div class="card col-sm-12">
-          <div class="card__header">
-            <p class="card__name">Recentste bericht</p>
-            <p class='card__title card__title--right'>Afzender</p>
-          </div>
-          <div class="card__content">
-            <p>Mom, I know I let you down. And though you say the days are happy. Why is the power off and I'm fucked up?. And, Mom, I know he's not around. But don't you place the blame on me.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <p><i class="fas fa-bed"></i> 3 nieuwe koten</p>
-        <div class="card col-sm-12">
-          <div class="card__header">
-            <p class="card__name">Recentste kot</p>
-            <p class='card__title card__title--right'>Adres</p>
-          </div>
-          <div class="card__content">
-            <div class="card__image">
-
-            </div>
-            <p>We're gonna rock this house until we knock it down. So turn the volume loud. 'Cause it's mayhem 'til the A.M.. So, baby, make just like K-Fed.</p>
-          </div>
-        </div>
-      </div>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Welkom terug, {{ data.first_name }}</h2>
+      <p>Dit is wat je gemist hebt</p>
     </div>
   </div>
-  {{> footer}}
+  <div class="row">
+    <div class="col-sm-12">
+      <p><i class="fas fa-envelope"></i> 1 nieuw bericht</p>
+      <div class="card col-sm-12">
+        <div class="card__header">
+          <p class="card__name">Recentste bericht</p>
+          <p class='card__title card__title--right'>Afzender</p>
+        </div>
+        <div class="card__content">
+          <p>Mom, I know I let you down. And though you say the days are happy. Why is the power off and I'm fucked up?. And, Mom, I know he's not around. But don't you place the blame on me.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <p><i class="fas fa-bed"></i> 3 nieuwe koten</p>
+      <div class="card col-sm-12">
+        <div class="card__header">
+          <p class="card__name">Recentste kot</p>
+          <p class='card__title card__title--right'>Adres</p>
+        </div>
+        <div class="card__content">
+          <div class="card__image">
+
+          </div>
+          <p>We're gonna rock this house until we knock it down. So turn the volume loud. 'Cause it's mayhem 'til the A.M.. So, baby, make just like K-Fed.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
 </div>
+
 {{/if}}
+{{> footer}}

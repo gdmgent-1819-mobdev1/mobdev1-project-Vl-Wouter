@@ -1,6 +1,7 @@
 import { compile } from 'handlebars';
 import update from '../helpers/update';
 import { getInstance, getDb } from '../firebase/firebase';
+import menuHelper from '../helpers/nav-functions';
 
 const firebase = getInstance();
 const db = getDb();
@@ -27,6 +28,12 @@ export default () => {
         update(compile(dashTemplate)({ title, data, loading }));
         const logoutbtn = document.querySelector('#logout-btn');
         logoutbtn.addEventListener('click', logout);
+        
+        const menuBtn = document.querySelector('#toggleMenu');
+        menuBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          menuHelper.toggleMenu();
+        });
       });
   } else {
     window.location.replace('/');

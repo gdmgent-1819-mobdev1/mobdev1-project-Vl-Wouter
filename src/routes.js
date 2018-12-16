@@ -8,6 +8,7 @@ import ListView from './pages/list';
 import ProfileView from './pages/profile';
 import NewView from './pages/new';
 import DetailView from './pages/detail';
+import MapView from './pages/map';
 
 export default [
   { path: '/', view: HomeView },
@@ -18,5 +19,6 @@ export default [
   { path: '/rooms/list', view: ListView },
   { path: '/profile', view: ProfileView },
   { path: '/rooms/new', view: NewView },
+  { path: '/rooms/map', view: MapView },
   { path: '/rooms/:id', view: DetailView },
 ];

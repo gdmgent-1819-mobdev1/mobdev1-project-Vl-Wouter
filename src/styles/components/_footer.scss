@@ -1,20 +1,105 @@
-.nav {
-  height: 60px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+.footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #fff;
+  .nav {
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    z-index: 3;
 
-  a:link {
-    color: $primary-color;
-    text-decoration: none;
-    font-size: 30px;
+    .text-nav {
+      font-size: 14px;
+      text-align:center;
+      display: block;
+    }
+    
+
+    width: 100%;
+    background-color: $light-color;
+  
+    a:link {
+      color: $primary-color;
+      text-decoration: none;
+      font-size: 30px;
+      text-align: center;
+    }
+  
+    a:visited {
+      color: $primary-color;
+    }
   }
 
-  a:visited {
-    color: $primary-color;
+  .menu {
+    text-align: center;
+    background: $light-color;
+    padding: 0 15px;
+    box-shadow: 0 -3px 15px #00000030;
+
+    transform: translateY(0);
+    transition: transform 300ms ease-in-out;
+    will-change: transform;
+
+    a:link, a:visited, a:hover {
+      color: $primary-color;
+      line-height: 1.7;
+    }
+
+    &--down {
+      transform: translateY(100%);
+      transition: transform 300ms ease-in-out;
+      will-change: transform;
+    }
+  }
+}
+
+@media(min-width: 941px) {
+  .footer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 60px;
+    margin-top: -15%;
+
+    .nav {
+      height: 100%;
+      width: 100px;
+      position: fixed;
+      top: 0;
+      flex-flow: column nowrap;
+
+
+      .text-nav {
+        font-size: 14px;
+        text-align:center;
+        display: block;
+      }
+    }
+  
+
+    .menu {
+      box-shadow: 3px 0 15px #00000030;
+      height: 100%;
+      width: 200px;
+      position: fixed;
+      top: 0;
+
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+
+      transform: translateX(40%);
+      transition: transform 300ms ease-in-out;
+      will-change: transform;
+
+      &--down {
+        transform: translateX(-58%);
+        transition: transform 300ms ease-in-out;
+        will-change: transform;
+      }
+    }
   }
 }

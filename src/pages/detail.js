@@ -1,6 +1,7 @@
 // Only import the compile function from handlebars instead of the entire library
 import { compile } from 'handlebars';
 import update from '../helpers/update';
+import menuHelper from '../helpers/nav-functions';
 import { getInstance, getDb } from '../firebase/firebase';
 
 // Firebase
@@ -22,4 +23,9 @@ export default () => {
   // } else {
   //   window.location.replace('#/');
   // }
+  const menuBtn = document.querySelector('#toggleMenu');
+  menuBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    menuHelper.toggleMenu();
+  });
 }

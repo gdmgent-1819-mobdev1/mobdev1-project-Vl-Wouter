@@ -4,9 +4,11 @@ html, body {
     padding: 0;
     background: #fefefe;
     height: 100vh;
+    box-sizing: border-box;
     
     #app {
         height: 100%;
+        margin: 0;
         position: relative;
     }
 
