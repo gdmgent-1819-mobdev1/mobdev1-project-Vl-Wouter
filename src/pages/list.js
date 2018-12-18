@@ -9,6 +9,10 @@ const db = getDb();
 const listTemplate = require('../templates/list.handlebars');
 
 
+const toggleFilterMenu = () => {
+  document.querySelector('#filters').classList.toggle('filter--up')
+};
+
 export default () => {
   let loading = true;
   let user = null;
@@ -35,6 +39,9 @@ export default () => {
             update(compile(listTemplate)({
               loading, title: 'Alle koten', owner, student, rooms,
             }));
+            const filterBtn = document.querySelector('#filterBtn');
+            document.querySelector('#cancelFilter').addEventListener('click', toggleFilterMenu);
+            filterBtn.addEventListener('click', toggleFilterMenu);
             const menuBtn = document.querySelector('#toggleMenu');
             menuBtn.addEventListener('click', (e) => {
               e.preventDefault();

@@ -11,22 +11,22 @@ const newTemplate = require('../templates/new.handlebars');
 
 const getValue = (element) => {
   return document.querySelector(element).value;
-}
+};
 
 const storeRoom = (room) => {
   return new Promise(
     (resolve, reject) => {
-      db.ref(`rooms`).push(room)
+      db.ref('rooms').push(room)
         .then(() => resolve(null))
         .catch(error => reject(error));
-    }
-  )
-}
+    },
+  );
+};
 
 const generatePhotoUrl = () => {
   return new Promise(
     (resolve, reject) => {
-      fetch(`https://api.unsplash.com/photos/random?query=bedroom&client_id=${tokens.unsplashToken}`)
+      fetch(`https://api.unsplash.com/photos/random?query=dorm-room&client_id=${tokens.unsplashToken}`)
         .then((response) => {
           const photo = response.json();
           resolve(photo);

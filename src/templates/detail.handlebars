@@ -1,13 +1,13 @@
 {{>header}}
 <div class="container container--fill">
   <div class="detail__image">
-    <img src="https://images.unsplash.com/photo-1521783988139-89397d761dce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1250&q=80" alt="Bedroom">
+    <img src="{{ room.photo }}" alt="Bedroom">
   </div>
   <div class="detail__header">
     <div class="container container--nohead row">
       <div class="col-sm-10">
-        <p class='text-light text-bold'>Korenmarkt 2, 9000 Gent</p>
-        <p class="text-secondary">Studio</p>
+        <p class='text-light text-bold'>{{ room.directions.address }}</p>
+        <p class="text-light">{{ room.info.type }}</p>
       </div>
       <div class="col-sm-2 text-secondary flex flex--center">
         <i class="far fa-heart fa-2x"></i>
@@ -21,7 +21,7 @@
         <p>Lijst met details</p>
       </div>
       <div class="col-sm-8">
-        <p>I'm not afraid to take a stand. Everybody, come take my hand. We'll walk this road together, through the storm. Whatever weather, cold or warm. Just lettin' you know that you're not alone. Holla if you feel like you've been down the same road.</p>
+        <p>{{ room.extra }}</p>
       </div>
     </div>
   </div>

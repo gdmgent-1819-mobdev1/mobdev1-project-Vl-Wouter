@@ -5,12 +5,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
+  // position: fixed;
   top: 0;
   box-shadow: 0 6px 15px #00000030;
   box-sizing: border-box;
   background: $light-color;
-  z-index: 2;
+  z-index: 80;
 
   &__logo {
     height: 80%;

@@ -12,20 +12,30 @@ const db = getDb();
 // Import the template to use
 const detailTemplate = require('../templates/detail.handlebars');
 
-export default () => {
-  // Data to be passed to the template
-  // Return the compiled template to the router
-  // update(compile(homeTemplate)({ status, logo, user }));
-  const status = firebase.auth().currentUser;
-  update(compile(detailTemplate)({ }));
-  // if (status) {
-    
-  // } else {
-  //   window.location.replace('#/');
-  // }
+const defineMenu = () => {
   const menuBtn = document.querySelector('#toggleMenu');
   menuBtn.addEventListener('click', (e) => {
     e.preventDefault();
     menuHelper.toggleMenu();
   });
+};
+
+export default () => {
+  // Data to be passed to the template
+  // Return the compiled template to the router
+  // update(compile(homeTemplate)({ status, logo, user }));
+  const status = firebase.auth().currentUser;
+  const id = window.location.href.split('/')[5];
+  
+  if (status) {
+    update(compile(detailTemplate)({ }));
+    db.ref(`rooms/${id}`).once('value')
+      .then((snapshot) => {
+        const room = snapshot.val();
+        update(compile(detailTemplate)({ room }));
+        defineMenu();
+      })
+  } else {
+    window.location.replace('#/');
+  }
 }

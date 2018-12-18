@@ -24,6 +24,12 @@
         padding: 10px 4px;
         border: 1px solid lightgray;
         width: 100%;
+
+        &--inline {
+          display: inline;
+          min-width: 40px;
+          max-width: 80px;
+        }
     }
 
     input[type=radio] {
