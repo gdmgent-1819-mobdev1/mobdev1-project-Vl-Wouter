@@ -7,11 +7,31 @@
           <p class='text-bold text-primary'>Prijs</p>
           <p>Tussen <input type="number" id="minPrice" class='form__input form__input--inline' maxlength="4"> en <input type="number" id="maxPrice" class='form__input form__input--inline' maxlength="4"> euro.</p>
         </div>
+        <div class="col-sm-12">
+          <p class="text-bold text-primary">Afstand</p>
+          <p>Tussen <input type="number" id="minDistance" class='form__input form__input--inline' maxlength="4"> en <input type="number" id="maxDistance" class='form__input form__input--inline' maxlength="4"> km.</p>
+        </div>
+        <div class="col-sm-12">
+          <p class="text-bold text-primary">Type</p>
+          <div class="col-sm-6">
+            <input type="radio" name="filterType" id="" value="Kamer"><span>Kamer</span>
+          </div>
+          <div class="col-sm-6">
+            <input type="radio" name="filterType" id="" value="Studio"><span>Studio</span>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <p class="text-bold text-primary">Oppervlakte</p>
+          <p><input type="number" id="filterArea" class='form__input form__input--inline'> m²</p>
+        </div>
+        <div class="col-sm-12">
+          <input type="submit" value="Filter" class='btn btn--large btn--primary'>
+        </div>
       </div>
     </form>
     <div class="row">
       <div class="col-sm-6">
-        <button class='btn btn--large btn--danger' id='cancelFilter'>Cancel</button>
+        <button class='btn btn--large text-danger' id='cancelFilter'>Cancel</button>
       </div>
     </div>
   </div>

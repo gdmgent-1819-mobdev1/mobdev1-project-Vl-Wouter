@@ -42,11 +42,7 @@ export default () => {
             const filterBtn = document.querySelector('#filterBtn');
             document.querySelector('#cancelFilter').addEventListener('click', toggleFilterMenu);
             filterBtn.addEventListener('click', toggleFilterMenu);
-            const menuBtn = document.querySelector('#toggleMenu');
-            menuBtn.addEventListener('click', (e) => {
-              e.preventDefault();
-              menuHelper.toggleMenu();
-            });
+            menuHelper.defineMenu();
           });
       });
   } else {

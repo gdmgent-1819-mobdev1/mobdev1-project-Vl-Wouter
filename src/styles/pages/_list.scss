@@ -8,6 +8,7 @@
   transform: translateY(0);
   transition: transform 300ms ease-in-out;
   will-change: transform;
+  z-index: 999;
 
   &--up {
     transform: translateY(-100%);

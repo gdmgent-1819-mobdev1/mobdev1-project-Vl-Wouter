@@ -29,11 +29,7 @@ export default () => {
           owner,
           student,
         }));
-        const menuBtn = document.querySelector('#toggleMenu');
-        menuBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          menuHelper.toggleMenu();
-        });
+        menuHelper.defineMenu();
       });
   } else {
     window.location.replace('/');

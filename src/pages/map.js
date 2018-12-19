@@ -40,11 +40,7 @@ export default () => {
             update(compile(mapTemplate)({
               loading, student,
             }));
-            const menuBtn = document.querySelector('#toggleMenu');
-            menuBtn.addEventListener('click', (e) => {
-              e.preventDefault();
-              menuHelper.toggleMenu();
-            });
+            menuHelper.defineMenu();
             const map = new mapboxgl.Map({
               container: 'map',
               style: 'mapbox://styles/mapbox/streets-v9',
