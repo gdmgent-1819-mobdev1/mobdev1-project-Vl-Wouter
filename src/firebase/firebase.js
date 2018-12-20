@@ -1,7 +1,6 @@
 const firebaseInstance = require('firebase');
 
 // Initialize Firebase
-// TODO: Replace with your project's config
 const config = {
   apiKey: "AIzaSyDUSvKrd8THZrCRbZ572556AGC0EjTE360",
   authDomain: "eindopdracht-mobdev-i.firebaseapp.com",

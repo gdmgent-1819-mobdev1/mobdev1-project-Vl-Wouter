@@ -11,10 +11,14 @@
   }
 
   &--col {
-    flex-flow: column
+    flex-flow: column;
   }
 
   &--justify-around {
-    justify-content: space-around
+    justify-content: space-around;
+  }
+
+  &--justify-between {
+    justify-content: space-between;
   }
 }

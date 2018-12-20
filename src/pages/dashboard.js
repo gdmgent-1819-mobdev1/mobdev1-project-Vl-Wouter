@@ -2,6 +2,7 @@ import { compile } from 'handlebars';
 import update from '../helpers/update';
 import { getInstance, getDb } from '../firebase/firebase';
 import menuHelper from '../helpers/nav-functions';
+import dataHelper from '../helpers/data-functions';
 
 const firebase = getInstance();
 const db = getDb();
@@ -25,15 +26,17 @@ export default () => {
       .then((snapshot) => {
         data = snapshot.val();
         loading = false;
-        update(compile(dashTemplate)({ title, data, loading }));
-        const logoutbtn = document.querySelector('#logout-btn');
-        logoutbtn.addEventListener('click', logout);
-        
-        const menuBtn = document.querySelector('#toggleMenu');
-        menuBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          menuHelper.toggleMenu();
-        });
+        db.ref('rooms').once('value')
+          .then((roomdata) => {
+            const rooms = roomdata.val();
+            const roomArray = dataHelper.getRooms(rooms, data);
+            const featured = dataHelper.randomIndex(roomArray);
+            console.log(featured);
+            update(compile(dashTemplate)({ title, data, featured, loading }));
+            const logoutbtn = document.querySelector('#logout-btn');
+            logoutbtn.addEventListener('click', logout);
+            menuHelper.defineMenu();
+          });
       });
   } else {
     window.location.replace('/');

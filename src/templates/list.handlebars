@@ -48,10 +48,9 @@
     </div>
   </div>
   <div class="row">
-    {{#if rooms}}
-      {{#each rooms}}
+    {{#each studentRooms}}
       <div class="col-sm-12 col-md-6">
-        <a href="#/rooms/{{@key}}" data-navigo>
+        <a href="#/rooms/{{this.room_id}}" data-navigo>
           <div class="card">
             <div class="card__image">
               <img src="{{this.photo}}" alt="">
@@ -63,13 +62,24 @@
               <p><span class='text-secondary'>{{this.info.type}}</span> - <span class='text-bold'>€{{this.price.price}}</span></p>
               <p>{{this.extra}}</p>
             </div>
+            {{#if this.isOwner}}
+            <div class="card__actions row">
+              <div class="col-sm-6">
+                <button class="btn btn--large btn--danger">Delete</button>
+              </div>
+              <div class="col-sm-6">
+                <button class="btn btn--large">Edit</button>
+              </div>
+            </div>
+            {{/if}}
           </div>
         </a>
       </div>
-      {{/each}}
     {{else}}
-    <p>This bitch empty</p>
-    {{/if}}
+    <div class="col-sm-12">
+      <p>Helaas, er zijn op dit moment geen beschikbare kamers.</p>
+    </div>
+    {{/each}}
   </div>
 </div>
 {{> footer }}

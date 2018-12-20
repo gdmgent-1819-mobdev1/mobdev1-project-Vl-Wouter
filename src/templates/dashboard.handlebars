@@ -7,14 +7,19 @@
 <div class="container container--fill">
   <section class="featured">
     <div class="featured__image">
-      <img src="https://images.unsplash.com/photo-1541123356219-284ebe98ae3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80" alt="Featured Kot">
+      <img src="{{featured.photo}}" alt="Featured Kot">
     </div>
-    <div class="featured__content text-light">
-      <div class="container h-100 flex flex--col flex--justify-around">
-        <h5>FEATURED</h5>
-        <p class="text-bold">Korenmarkt 2, 9000 Gent</p>
+    <a href="#/rooms/{{featured.room_id}}">
+      <div class="featured__content text-light">
+        <div class="container container--nohead h-100 flex flex--col flex--justify-between">
+          <h5>FEATURED</h5>
+          <div class="featured__info">
+            <p class="text-bold">{{featured.directions.address}}</p>
+            <p>€{{featured.price.price}}</p>
+          </div>
+        </div>
       </div>
-    </div>
+    </a>
   </section>
 </div>
 

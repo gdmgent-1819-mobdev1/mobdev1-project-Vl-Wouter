@@ -1,8 +1,12 @@
-$steps: 10;
-$interval: 10%;
-
-@for $i from 0 to $steps {
-  .h-#{$i*10} {
-    height: #{$i*$interval};
+@mixin genHeight() {
+  $steps: 10;
+  $interval: 10%;
+  
+  @for $i from 1 to $steps {
+    .h-#{$i*$steps} {
+      height: #{$i * $interval};
+    }
   }
 }
+
+@include genHeight();
