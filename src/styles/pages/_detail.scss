@@ -13,4 +13,15 @@
   &__header {
     background: $primary-color;
   }
+
+  &__action {
+    background: $secondary-color;
+    padding: 5px 0;
+    box-sizing: border-box;
+
+    a:link, a:visited, a:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
 }

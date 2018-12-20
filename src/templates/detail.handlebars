@@ -7,7 +7,7 @@
     <div class="container container--nohead row">
       <div class="col-sm-10">
         <p class='text-light text-bold'>{{ room.directions.address }}</p>
-        <p class="text-light">{{ room.info.type }}</p>
+        <p class="text-light">{{ room.info.type }} - €{{ room.price.price }}</p>
       </div>
       <div class="col-sm-2 text-secondary flex flex--center">
         <i class="far fa-heart fa-2x"></i>
@@ -15,10 +15,15 @@
       </div>
     </div>
   </div>
+  <div class="detail__action">
+    <div class="container container--nohead">
+      <p class='text-light'>Dit kot is nog beschikbaar. <br> <a href="" class='text-bold'>Stuur nu een bericht!</a></p>
+    </div>
+  </div>
   <div class="detail__content">
     <div class="row">
       <div class="col-sm-4">
-        <p>Lijst met details</p>
+        <h4 class="m-top-10">Info</h4>
       </div>
       <div class="col-sm-8">
         <p>{{ room.extra }}</p>

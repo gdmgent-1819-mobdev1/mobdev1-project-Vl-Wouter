@@ -1,0 +1,12 @@
+@mixin genMargin($direction) {
+  $steps: 10;
+  $interval: 10%;
+
+  @for $i from 0 to $steps {
+    .m-#{$direction}-#{$i*10} {
+      margin-#{$direction}: #{$i * $interval};
+    }
+  }
+}
+
+@include genMargin("top");

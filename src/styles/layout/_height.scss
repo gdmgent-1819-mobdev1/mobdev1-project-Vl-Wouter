@@ -1,0 +1,8 @@
+$steps: 10;
+$interval: 10%;
+
+@for $i from 0 to $steps {
+  .h-#{$i*10} {
+    height: #{$i*$interval};
+  }
+}
