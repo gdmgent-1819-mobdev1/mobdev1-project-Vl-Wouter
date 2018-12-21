@@ -4,27 +4,42 @@ const firebase = getInstance();
 const db = getDb();
 
 /**
- * Get rooms from the js object returned by the database
- * @param {*} object
+ * Get all current rooms from the database and add button trigger to owned rooms
+ * @param {*} user used to check if current user is owner of the room
  */
-const getRooms = (object, user) => {
-  // Get keys and values of all rooms
-  const keys = Object.keys(object);
-  const data = Object.values(object);
+const getRooms = () => {
+  return new Promise(
+    (resolve, reject) => {
+      db.ref('/rooms').once('value')
+        .then((snapshot) => {
+          const rooms = snapshot.val();
+          const roomKeys = Object.keys(rooms);
+          const roomData = Object.values(rooms);
+          const roomArray = [];
 
-  // Create an empty array
-  const roomArray = [];
-  // store data in array under room key
-  keys.forEach((key, i) => {
-    if (data[i].info.owner === user.id) {
-      data[i].isOwner = true;
-    }
-    data[i].room_id = key;
-    roomArray[i] = data[i];
-  });
+          roomKeys.forEach((key, i) => {
+            roomData[i].room_id = key;
+            roomArray[i] = roomData[i];
+          });
 
-  // Return said array
-  return roomArray;
+          resolve(roomArray);
+        })
+        .catch(error => reject(error));
+    },
+  );
+};
+
+const getRoomInfo = (id) => {
+  return new Promise(
+    (resolve, reject) => {
+      db.ref(`rooms/${id}`).once('value')
+        .then((snapshot) => {
+          const roomData = snapshot.val();
+          resolve(roomData);
+        })
+        .catch(error => reject(error));
+    },
+  );
 };
 
 const getFavorites = (user) => {
@@ -33,7 +48,21 @@ const getFavorites = (user) => {
       db.ref(`favorites/${user}`).once('value')
         .then((snapshot) => {
           const data = snapshot.val();
-          resolve(data);
+          const keys = Object.keys(data);
+          const roomPromises = [];
+          const rooms = [];
+          keys.forEach((key) => {
+            roomPromises.push(
+              getRoomInfo(key)
+                .then((room) => {
+                  rooms.push(room);
+                }),
+            );
+          });
+          Promise.all(roomPromises)
+            .then(() => {
+              resolve(rooms);
+            });
         })
         .catch(error => reject(error));
     },
@@ -52,6 +81,19 @@ const addToFavorites = (room, user) => {
   );
 };
 
+const getUserInfo = (userId) => {
+  return new Promise(
+    (resolve, reject) => {
+      db.ref(`users/${userId}`).once('value')
+        .then((snapshot) => {
+          const user = snapshot.val();
+          resolve(user);
+        })
+        .catch(error => reject(error));
+    },
+  );
+};
+
 const removeFavorite = (room, user) => {
   return new Promise(
     (resolve, reject) => {
@@ -62,15 +104,26 @@ const removeFavorite = (room, user) => {
   );
 };
 
-const randomIndex = (array) => {
-  const number = Math.floor((Math.random() * array.length));
-  return array[number];
+const getRandomRoom = () => {
+  return new Promise(
+    (resolve, reject) => {
+      getRooms()
+        .then((roomArray) => {
+          const number = Math.floor(Math.random() * roomArray.length);
+          const room = roomArray[number];
+          resolve(room);
+        })
+        .catch(error => reject(error));
+    },
+  );
 };
 
 export default {
   getRooms,
+  getUserInfo,
+  getRoomInfo,
   addToFavorites,
   removeFavorite,
-  randomIndex,
+  getRandomRoom,
   getFavorites,
 };

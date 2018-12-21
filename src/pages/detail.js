@@ -13,10 +13,6 @@ const db = getDb();
 // Import the template to use
 const detailTemplate = require('../templates/detail.handlebars');
 
-const defineButtons = (id, user) => {
-  
-}
-
 export default () => {
   // Data to be passed to the template
   // Return the compiled template to the router
@@ -41,11 +37,9 @@ export default () => {
             if (favorites[id]) {
               const delFavBtn = document.querySelector('#delFavorite');
               delFavBtn.addEventListener('click', () => {
-                delFavorite(id, status.uid);
                 dataHelper.removeFavorite(id, status.uid)
                   .then(() => {
-                    update(compile(detailTemplate)({ room, favorited: false }));
-                    menuHelper.defineMenu();
+                    window.location.replace('#/rooms/list');
                   });
               });
             } else {
@@ -53,8 +47,7 @@ export default () => {
               addFavBtn.addEventListener('click', () => {
                 dataHelper.addToFavorites(id, status.uid)
                   .then(() => {
-                    update(compile(detailTemplate)({ room, favorited: true }));
-                    menuHelper.defineMenu();
+                    window.location.replace('#/rooms/list');
                   });
               });
             }

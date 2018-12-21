@@ -1,0 +1,6 @@
+{{> header}}
+<p class="text--center">{{user.first_name}}'s favoreten</p>
+{{#each fav}}
+<p>{{this.directions.address}}</p>
+{{/each}}
+{{> footer}}

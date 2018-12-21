@@ -7,3 +7,7 @@
 @include generateAlign('left');
 @include generateAlign('center');
 @include generateAlign('right');
+
+.text--capitalize {
+  text-transform: capitalize;
+}
