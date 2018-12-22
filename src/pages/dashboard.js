@@ -21,10 +21,14 @@ export default () => {
         const user = values[0];
         const rooms = values[1];
         const featured = values[2];
-        update(compile(dashTemplate)({ user, rooms, featured }));
-        menuHelper.defineMenu();
+        if(user.type === 'owner') {
+          window.location.replace('#/rooms/list');
+        } else {
+          update(compile(dashTemplate)({ user, rooms, featured }));
+          menuHelper.defineMenu();
+        }
       });
   } else {
-    window.location.replace('/');
+    window.location.replace('#/');
   }
 };

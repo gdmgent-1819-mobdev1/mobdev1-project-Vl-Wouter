@@ -41,14 +41,18 @@
   <h1>{{ title }}</h1>
   <div class="row">
     <div class="col-sm-12">
-      {{#if owner}}
-        <a class='btn btn--primary text-light' href="#/rooms/new">Nieuw</a>
+      {{#if ownerMode}}
+      <div class="col-sm-3">
+        <a href="#/rooms/new"><button class='btn btn--large btn--primary text-light' >Nieuw</button> </a>
+      </div>
       {{/if}}
-        <button class='btn btn--primary' id='filterBtn'>Filter</button>
+      <div class="col-sm-3">
+        <button class='btn btn--large btn--primary' id='filterBtn'><span>Filter</span></button>
+      </div>
     </div>
   </div>
   <div class="row">
-    {{#each studentRooms}}
+    {{#each rooms}}
       <div class="col-sm-12 col-md-6">
         <a href="#/rooms/{{this.room_id}}" data-navigo>
           <div class="card">
@@ -59,19 +63,22 @@
               <h5 class='card__title'>{{this.directions.address}}</h5>
             </div>
             <div class="card__content">
-              <p><span class='text-secondary'>{{this.info.type}}</span> - <span class='text-bold'>€{{this.price.price}}</span></p>
+              <div class="row">
+                <div class="col-sm-4">
+                  <p class='text-secondary'>{{this.info.type}}</p>
+                </div>
+                <div class="col-sm-4">
+                  <p class="text--center text-bold">€{{this.price.price}}</p>
+                </div>
+                {{#if ownerMode}}
+                {{else}}
+                <div class="col-sm-4">
+                  <p class="text--right text-primary">{{this.distance}}km</p>
+                </div>
+                {{/if}}
+              </div>
               <p>{{this.extra}}</p>
             </div>
-            {{#if this.isOwner}}
-            <div class="card__actions row">
-              <div class="col-sm-6">
-                <button class="btn btn--large btn--danger">Delete</button>
-              </div>
-              <div class="col-sm-6">
-                <button class="btn btn--large">Edit</button>
-              </div>
-            </div>
-            {{/if}}
           </div>
         </a>
       </div>

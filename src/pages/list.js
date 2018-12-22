@@ -1,4 +1,5 @@
 import { compile } from 'handlebars';
+import { turf, distance } from '@turf/turf';
 import update from '../helpers/update';
 import { getInstance, getDb } from '../firebase/firebase';
 import menuHelper from '../helpers/nav-functions';
@@ -10,8 +11,45 @@ const db = getDb();
 const listTemplate = require('../templates/list.handlebars');
 
 
+const prepareStudentRooms = (rooms, user) => {
+  return new Promise(
+    (resolve, reject) => {
+      dataHelper.getSchoolInfo(user.school)
+        .then((school) => {
+          rooms.forEach((room) => {
+            const lat = parseFloat(room.directions.coords.lat, 10);
+            const lng = parseFloat(room.directions.coords.lng, 10);
+            room.distance = distance([school.directions.coords.lng, school.directions.coords.lat], [lng, lat], { units: 'kilometers' }).toFixed(2);
+          });
+          resolve(rooms);
+        })
+        .catch(error => reject(error));
+    },
+  );
+};
+
+const prepareOwnedRooms = (rooms, user) => {
+  return new Promise(
+    (resolve, reject) => {
+      const finalArray = [];
+      rooms.forEach((room) => {
+        if (room.info.owner === user.id) {
+          finalArray.push(room);
+        }
+      });
+      resolve(finalArray);
+    },
+  );
+};
+
+
 const toggleFilterMenu = () => {
   document.querySelector('#filters').classList.toggle('filter--up');
+};
+
+const defineFilterMenu = () => {
+  document.querySelector('#filterBtn').addEventListener('click', toggleFilterMenu);
+  document.querySelector('#cancelFilter').addEventListener('click', toggleFilterMenu);
 };
 
 export default () => {
@@ -22,39 +60,23 @@ export default () => {
     Promise.all([userPromise, roomPromise])
       .then((values) => {
         console.log(values);
-        update(compile(listTemplate)({ }));
-        menuHelper.defineMenu();
+        const user = values[0];
+        if (user.type === 'student') {
+          prepareStudentRooms(values[1], user)
+            .then((rooms) => {
+              update(compile(listTemplate)({ rooms, ownerMode: false }));
+              menuHelper.defineMenu();
+              defineFilterMenu();
+            });
+        } else {
+          prepareOwnedRooms(values[1], user)
+            .then((rooms) => {
+              update(compile(listTemplate)({ rooms, ownerMode: true }));
+              menuHelper.defineMenu();
+              defineFilterMenu();
+            });
+        }
       });
-    // db.ref(`users/${firebase.auth().currentUser.uid}`).once('value')
-    //   .then((snapshot) => {
-    //     user = snapshot.val();
-    //     if (user.type === 'owner') {
-    //       student = false;
-    //       owner = true;
-    //     } else {
-    //       student = true;
-    //       owner = false;
-    //     }
-    //     loading = false;
-    //     db.ref('rooms/').once('value')
-    //       .then((room) => {
-    //         rooms = room.val();
-    //         const studentRooms = dataHelper.getRooms(rooms, user);
-    //         console.log(studentRooms);
-    //         update(compile(listTemplate)({
-    //           loading,
-    //           title: 'Alle koten',
-    //           owner,
-    //           student,
-    //           studentRooms,
-    //         }));
-    //         console.log(studentRooms);
-    //         const filterBtn = document.querySelector('#filterBtn');
-    //         document.querySelector('#cancelFilter').addEventListener('click', toggleFilterMenu);
-    //         filterBtn.addEventListener('click', toggleFilterMenu);
-    //         menuHelper.defineMenu();
-    //       });
-    //   });
   } else {
     window.location.replace('/');
   }

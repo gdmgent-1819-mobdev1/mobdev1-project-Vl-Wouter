@@ -1,6 +1,7 @@
 import { compile } from 'handlebars';
 import update from '../helpers/update';
 import { Student, Owner } from '../helpers/classes';
+import dataHelper from '../helpers/data-functions';
 
 const { getInstance, getDb } = require('../firebase/firebase');
 
@@ -64,24 +65,27 @@ const registerUser = () => {
 export default () => {
   // add data
   // compile update
-  update(compile(registerTemplate)());
+  dataHelper.getSchools()
+    .then((schools) => {
+      update(compile(registerTemplate)({ schools }));
 
-  // add logic
-  const buttons = document.querySelectorAll('input[type=radio]');
-  const submit = document.querySelector('#register-btn');
-  buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const type = document.querySelector('input[type=radio]:checked').value;
-      if (type === 'student') {
-        document.querySelector('.form__field--studentonly').classList.remove('hidden');
-      } else {
-        document.querySelector('.form__field--studentonly').classList.add('hidden');
-      }
+      // add logic
+      const buttons = document.querySelectorAll('input[type=radio]');
+      const submit = document.querySelector('#register-btn');
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const type = document.querySelector('input[type=radio]:checked').value;
+          if (type === 'student') {
+            document.querySelector('.form__field--studentonly').classList.remove('hidden');
+          } else {
+            document.querySelector('.form__field--studentonly').classList.add('hidden');
+          }
+        });
+      });
+      // rewrite logic for submit
+      submit.addEventListener('click', (e) => {
+        e.preventDefault();
+        registerUser();
+      });
     });
-  });
-  // rewrite logic for submit
-  submit.addEventListener('click', (e) => {
-    e.preventDefault();
-    registerUser();
-  });
 };

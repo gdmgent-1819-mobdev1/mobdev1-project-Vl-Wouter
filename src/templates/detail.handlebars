@@ -10,7 +10,7 @@
         <p class="text-light">{{ room.info.type }} - €{{ room.price.price }}</p>
       </div>
       <div class="col-sm-2 text-secondary flex flex--center">
-        {{#if favorited}}
+        {{#if fav}}
           <button class='btn text-secondary' id='delFavorite'><i class="fas fa-heart fa-2x"></i></button>
         {{else}}
           <button class='btn text-secondary' id='addFavorite'><i class="far fa-heart fa-2x"></i></button>
@@ -20,7 +20,18 @@
   </div>
   <div class="detail__action">
     <div class="container container--nohead">
+      {{#if ownerMode}}
+      <div class="row">
+        <div class="col-sm-6">
+          <button class="btn btn--large text-light">Verwijder</button>
+        </div>
+        <div class="col-sm-6">
+          <a href=""><button class="btn btn--large text-light">Bewerken</button></a>
+        </div>
+      </div>
+      {{else}}
       <p class='text-light'>Dit kot is nog beschikbaar. <br> <a href="" class='text-bold'>Stuur nu een bericht!</a></p>
+      {{/if}}
     </div>
   </div>
   <div class="detail__content">
