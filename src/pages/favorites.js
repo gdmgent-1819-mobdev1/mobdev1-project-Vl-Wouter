@@ -20,6 +20,13 @@ export default () => {
         const fav = values[1];
         update(compile(favTemplate)({ user, fav }));
         menuHelper.defineMenu();
+        const deleteBtns = document.querySelectorAll('.delbtn');
+        deleteBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            dataHelper.removeFavorite(btn.id.split('__')[1], user.id)
+              .then(window.location.replace('#/profile'));
+          })
+        });
       });
   } else {
     window.location.replace('#/');

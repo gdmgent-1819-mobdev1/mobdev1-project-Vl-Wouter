@@ -6,7 +6,6 @@ import menuHelper from '../helpers/nav-functions';
 import dataHelper from '../helpers/data-functions';
 
 const firebase = getInstance();
-const db = getDb();
 
 const listTemplate = require('../templates/list.handlebars');
 
@@ -59,7 +58,6 @@ export default () => {
 
     Promise.all([userPromise, roomPromise])
       .then((values) => {
-        console.log(values);
         const user = values[0];
         if (user.type === 'student') {
           prepareStudentRooms(values[1], user)

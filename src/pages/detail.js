@@ -23,7 +23,6 @@ export default () => {
 
     Promise.all([userPromise, roomPromise, favoritePromise])
       .then((values) => {
-        console.log(values);
         const user = values[0];
         const room = values[1];
         const fav = values[2];
