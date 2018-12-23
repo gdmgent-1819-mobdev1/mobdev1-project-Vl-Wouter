@@ -1,5 +1,5 @@
 import { compile } from 'handlebars';
-import { turf, distance } from '@turf/turf';
+import { distance } from '@turf/turf';
 import update from '../helpers/update';
 import { getInstance, getDb } from '../firebase/firebase';
 import menuHelper from '../helpers/nav-functions';

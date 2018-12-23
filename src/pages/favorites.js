@@ -16,7 +16,6 @@ export default () => {
     const favPromise = dataHelper.getFavorites(userId);
     Promise.all([userPromise, favPromise])
       .then((values) => {
-        console.log(values);
         const user = values[0];
         const fav = values[1];
         update(compile(favTemplate)({ user, fav }));

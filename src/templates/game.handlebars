@@ -1,0 +1,42 @@
+{{> header}}
+<div class="container container--nohead h-90">
+  <header class="row h-10 ">
+    <div class="col-sm-12">
+      <h2 class='text--center'><span>KOT</span>or<span>NOT</span></h2>
+    </div>
+  </header>
+ <div class="h-80 flex flex--col flex--justify-around">
+   {{#if room}}
+   <div class="card">
+     <div class="card__image card__image--xl">
+       <img src="{{currentRoom.photo}}" alt="">
+     </div>
+     <header class="card__header">
+       <h5 class="card__title">{{currentRoom.directions.address}}</h5>
+     </header>
+     <main class="card__content">
+       <div class="col-sm-4">
+         <p class="text-secondary">{{currentRoom.info.type}}</p>
+       </div>
+       <div class="col-sm-4">
+         <p class="text--center text-bold">€{{currentRoom.price.price}}</p>
+       </div>
+       <div class="col-sm-4">
+         <p class="text--right text-primary">{{currentRoom.distance}}km</p>
+       </div>
+     </main>
+   </div>
+   <section class="row">
+     <div class="col-sm-6">
+       <button class="btn btn--xl btn--danger" id='NOT__{{currentRoom.room_id}}'>NOT</button>
+     </div>
+     <div class="col-sm-6">
+       <button class="btn btn--xl btn--success" id='KOT__{{currentRoom.room_id}}'>KOT</button>
+     </div>
+   </section>
+   {{else}}
+   <h3>Helaas, er zijn niet genoeg kamers voor deze mode.</h3>
+   {{/if}}
+ </div>
+</div>
+{{> footer}}

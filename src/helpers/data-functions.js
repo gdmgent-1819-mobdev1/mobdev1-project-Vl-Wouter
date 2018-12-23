@@ -104,21 +104,27 @@ const getFavorites = (user) => {
       db.ref(`favorites/${user}`).once('value')
         .then((snapshot) => {
           const data = snapshot.val();
-          const keys = Object.keys(data);
-          const roomPromises = [];
-          const rooms = [];
-          keys.forEach((key) => {
-            roomPromises.push(
-              getRoomInfo(key)
-                .then((room) => {
-                  rooms.push(room);
-                }),
-            );
-          });
-          Promise.all(roomPromises)
-            .then(() => {
-              resolve(rooms);
+          if (data) {
+            const keys = Object.keys(data);
+            const roomPromises = [];
+            const rooms = [];
+            keys.forEach((key) => {
+              roomPromises.push(
+                getRoomInfo(key)
+                  .then((room) => {
+                    room.room_id = key;
+                    rooms.push(room);
+                  }),
+              );
             });
+            Promise.all(roomPromises)
+              .then(() => {
+                resolve(rooms);
+              });
+          } else {
+            const rooms = null;
+            resolve(rooms);
+          }
         })
         .catch(error => reject(error));
     },

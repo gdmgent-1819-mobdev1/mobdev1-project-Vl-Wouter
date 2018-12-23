@@ -20,8 +20,26 @@ button {
     width: 100%;
   }
 
+  &--xl {
+    padding: 50px 0;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: 700;
+    font-size: 34px;
+  }
+
   &--primary {
     background-color: $primary-color;
+    color: $light-color;
+  }
+
+  &--danger {
+    background-color: $danger-color;
+    color: $light-color;
+  }
+
+  &--success {
+    background-color: $success-color;
     color: $light-color;
   }
 }

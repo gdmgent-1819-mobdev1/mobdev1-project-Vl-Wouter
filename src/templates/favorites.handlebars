@@ -1,6 +1,14 @@
 {{> header}}
-<p class="text--center">{{user.first_name}}'s favoreten</p>
+<h2 class="text--center">{{user.first_name}}'s favorieten</h2>
 {{#each fav}}
-<p>{{this.directions.address}}</p>
+<main class="row">
+  <div class="col-sm-12">
+    <div class="card card--small">
+      <div class="card__image">
+        <img src="https://images.unsplash.com/photo-1545021826-52612aca288f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80" alt="">
+      </div>
+    </div>
+  </div>
+</main>
 {{/each}}
 {{> footer}}
