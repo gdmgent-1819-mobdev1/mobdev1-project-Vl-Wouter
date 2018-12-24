@@ -86,7 +86,6 @@ const calcCoords = (input) => {
         }, error => reject(error));
     }
   );
-
 }
 
 export default () => {
