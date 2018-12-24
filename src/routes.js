@@ -10,6 +10,8 @@ import DetailView from './pages/detail';
 import MapView from './pages/map';
 import FavView from './pages/favorites';
 import GameView from './pages/game';
+import MessageView from './pages/messages';
+import ConvView from './pages/conversation';
 
 export default [
   { path: '/', view: HomeView },
@@ -23,4 +25,6 @@ export default [
   { path: '/rooms/KotOrNot', view: GameView },
   { path: '/rooms/:id', view: DetailView },
   { path: '/favorites', view: FavView },
+  { path: '/messages', view: MessageView },
+  { path: '/messages/:id', view: ConvView },
 ];

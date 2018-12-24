@@ -215,6 +215,21 @@ const getRandomRoom = () => {
   );
 };
 
+/**
+ * Gets all messages from or for a user depending on the type
+ * @param {Object} user user object to determine ID and type
+ */
+const getMessages = (user) => {
+  return new Promise(
+    (resolve, reject) => {
+        db.ref('/messages').orderByChild(user.type).equalTo(user.id).on('value', (snapshot) => {
+          const messages = snapshot.val();
+          resolve(messages);
+        });
+    },
+  );
+};
+
 export default {
   getRooms,
   getUserInfo,
@@ -226,4 +241,5 @@ export default {
   getSchools,
   getSchoolInfo,
   checkFavorite,
+  getMessages,
 };
