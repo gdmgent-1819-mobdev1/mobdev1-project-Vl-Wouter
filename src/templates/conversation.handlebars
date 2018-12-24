@@ -1,2 +1,22 @@
 {{> header}}
+<div class="container container--nohead h-80">
+  <div class="card">
+    <div class="card__header text--center">
+      <h4>{{room.directions.address}}</h4>
+    </div>
+    <div class="card__content">
+      <div class="row">
+        <div class="col-sm-6">
+          <p>{{room.info.type}}</p>
+        </div>
+        <div class="col-sm-6">
+          <p>€{{room.price.price}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{#each conversation.conversation}}
+  <p>{{this.message}}</p>
+  {{/each}}
+</div>
 {{> footer}}

@@ -230,6 +230,19 @@ const getMessages = (user) => {
   );
 };
 
+const getConversation = (combinedid) => {
+  return new Promise(
+    (resolve, reject) => {
+      db.ref(`messages/${combinedid}`).once('value')
+        .then((snapshot) => {
+          const conversation = snapshot.val();
+          resolve(conversation);
+        })
+        .catch(error => reject(error));
+    }
+  )
+}
+
 export default {
   getRooms,
   getUserInfo,
@@ -242,4 +255,5 @@ export default {
   getSchoolInfo,
   checkFavorite,
   getMessages,
+  getConversation,
 };
