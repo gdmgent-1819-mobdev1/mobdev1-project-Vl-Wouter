@@ -9,4 +9,13 @@
   }
 }
 
+.m-h-auto {
+  margin: 0 auto;
+}
+
+.p-0 {
+  padding: 0;
+}
+
 @include genMargin("top");
+@include genMargin("bottom");

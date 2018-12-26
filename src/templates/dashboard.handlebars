@@ -1,20 +1,24 @@
 {{> header}}
 <div class="container container--fill">
-  <section class="featured">
-    <div class="featured__image">
-      <img src="{{featured.photo}}" alt="Featured Kot">
-    </div>
-    <a href="#/rooms/{{featured.room_id}}">
-      <div class="featured__content text-light">
-        <div class="container container--nohead h-100 flex flex--col flex--justify-between">
-          <h5>FEATURED</h5>
-          <div class="featured__info">
-            <p class="text-bold">{{featured.directions.address}}</p>
-            <p>€{{featured.price.price}}</p>
-          </div>
+  <div class="row">
+    <div class="col-sm-12 col-xl-6 p-0">
+      <section class="featured">
+        <div class="featured__image">
+          <img src="{{featured.photo}}" alt="Featured Kot">
         </div>
-      </div>
-    </a>
-  </section>
+        <a href="#/rooms/{{featured.room_id}}">
+          <div class="featured__content text-light">
+            <div class="container container--nohead h-100 flex flex--col flex--justify-between">
+              <h5>FEATURED</h5>
+              <div class="featured__info">
+                <p class="text-bold">{{featured.directions.address}}</p>
+                <p>€{{featured.price.price}}</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </section>
+    </div>
+  </div>
 </div>
 {{> footer}}

@@ -127,17 +127,13 @@ const prepareStudentRooms = (rooms, user) => {
 };
 
 const prepareOwnedRooms = (rooms, user) => {
-  return new Promise(
-    (resolve, reject) => {
-      const finalArray = [];
-      rooms.forEach((room) => {
-        if (room.info.owner === user.id) {
-          finalArray.push(room);
-        }
-      });
-      resolve(finalArray);
-    },
-  );
+  const finalArray = [];
+  rooms.forEach((room) => {
+    if (room.info.owner === user.id) {
+      finalArray.push(room);
+    }
+  });
+  return finalArray;
 };
 
 
@@ -170,15 +166,12 @@ export default () => {
               defineFilterMenu();
             });
         } else {
-          prepareOwnedRooms(values[1], user)
-            .then((rooms) => {
-              update(compile(listTemplate)({ rooms, ownerMode: true }));
-              menuHelper.defineMenu();
-              defineFilterMenu();
-            });
+          const rooms = prepareOwnedRooms(values[1], user);
+          update(compile(listTemplate)({ rooms, ownerMode: true }));
+          menuHelper.defineMenu();
         }
       });
   } else {
-    window.location.replace('/');
+    window.location.replace('#/');
   }
 };

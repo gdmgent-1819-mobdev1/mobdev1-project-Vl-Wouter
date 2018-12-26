@@ -25,3 +25,21 @@
     }
   }
 }
+
+@media(min-width: 961px) {
+  .detail {
+    &__header {
+      height: 50%;
+    }
+
+    &__action {
+      height: 50%;
+    }
+    &__image {
+      img {
+        width: 100%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}

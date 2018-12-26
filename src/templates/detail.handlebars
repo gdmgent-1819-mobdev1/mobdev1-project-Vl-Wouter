@@ -1,45 +1,70 @@
 {{>header}}
-<div class="container container--fill">
-  <div class="detail__image">
-    <img src="{{ room.photo }}" alt="Bedroom">
-  </div>
-  <div class="detail__header">
-    <div class="container container--nohead row">
-      <div class="col-sm-10">
-        <p class='text-light text-bold'>{{ room.directions.address }}</p>
-        <p class="text-light">{{ room.info.type }} - €{{ room.price.price }}</p>
-      </div>
-      <div class="col-sm-2 text-secondary flex flex--center">
-        {{#if fav}}
-          <button class='btn text-secondary' id='delFavorite'><i class="fas fa-heart fa-2x"></i></button>
-        {{else}}
-          <button class='btn text-secondary' id='addFavorite'><i class="far fa-heart fa-2x"></i></button>
-        {{/if}}
+<div class="container container--fill h-auto">
+  <div class="row h-50">
+    <div class="col-sm-12 col-xl-6 p-0">
+      <div class="detail__image">
+        <img src="{{ room.photo }}" alt="Bedroom">
       </div>
     </div>
-  </div>
-  <div class="detail__action">
-    <div class="container container--nohead">
-      {{#if ownerMode}}
-      <div class="row">
-        <div class="col-sm-6">
-          <button class="btn btn--large text-light">Verwijder</button>
-        </div>
-        <div class="col-sm-6">
-          <a href=""><button class="btn btn--large text-light">Bewerken</button></a>
+    <div class="col-sm-12 col-xl-6 p-0">
+      <div class="detail__header">
+        <div class="container container--nohead row">
+          <div class="col-sm-10">
+            <p class='text-light text-bold'>{{ room.directions.address }}</p>
+            <p class="text-light">{{ room.info.type }} - €{{ room.price.price }}</p>
+          </div>
+          <div class="col-sm-2 text-secondary flex flex--center">
+            {{#if fav}}
+              <button class='btn text-secondary' id='delFavorite'><i class="fas fa-heart fa-2x"></i></button>
+            {{else}}
+              <button class='btn text-secondary' id='addFavorite'><i class="far fa-heart fa-2x"></i></button>
+            {{/if}}
+          </div>
         </div>
       </div>
-      {{else}}
-      <p class='text-light'>Dit kot is nog beschikbaar. <br> <a href="#/messages/{{user.id}}___{{room.info.owner}}" class='text-bold'>Stuur nu een bericht!</a></p>
-      {{/if}}
+      <div class="detail__action">
+        <div class="container container--nohead">
+          {{#if ownerMode}}
+          <div class="row">
+            <div class="col-sm-6">
+              <button class="btn btn--large text-light">Verwijder</button>
+            </div>
+            <div class="col-sm-6">
+              <a href=""><button class="btn btn--large text-light">Bewerken</button></a>
+            </div>
+          </div>
+          {{else}}
+          <div class="row">
+            <div class="col-sm-12">
+              <p class='text-light'>Dit kot is nog beschikbaar. <br> <a href="#/messages/{{user.id}}___{{room.info.owner}}" class='text-bold'>Stuur nu een bericht!</a></p>        
+            </div>
+          </div>
+          {{/if}}
+        </div>
     </div>
+  </div>
   </div>
   <div class="detail__content">
     <div class="row">
-      <div class="col-sm-4">
-        <h4 class="m-top-10">Info</h4>
+      <div class="col-sm-12 col-xl-10 m-h-auto">
+        <div class="col-sm-12 col-xl-6">
+          <h4 class='m-top-10'>Info</h4>
+          <p>Verdieping: {{room.info.floor}}</p>
+          <p>Personen: {{room.info.people}}</p>
+          <p>Oppervlakte: {{room.info.surface}} m²</p>
+          <p>Hoeveel beschikbaar: {{room.info.total}}</p>
+        </div>
+        <div class="col-sm-12 col-xl-6">
+          <h4 class='m-top-10'>Details</h4>
+          <p>Bad: {{room.details.bath}}</p>
+          <p>Douche: {{room.details.shower}}</p>
+          <p>Toilet: {{room.details.toilet}}</p>
+          <p>Keuken: {{room.details.kitchen}}</p>
+          <p>Meubels: {{room.details.furniture}}</p>
+          <p>Beschrijving meubels: {{room.details.furniture_description}}</p>
+        </div>
       </div>
-      <div class="col-sm-8">
+      <div class="col-sm-12 col-xl-10 m-h-auto">
         <p>{{ room.extra }}</p>
       </div>
     </div>

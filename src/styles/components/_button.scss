@@ -42,4 +42,9 @@ button {
     background-color: $success-color;
     color: $light-color;
   }
+
+  &--secondary {
+    background-color: $secondary-color;
+    color: $light-color;
+  }
 }
