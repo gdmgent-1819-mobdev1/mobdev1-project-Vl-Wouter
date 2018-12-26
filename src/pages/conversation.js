@@ -33,7 +33,6 @@ export default () => {
             console.log(conversation);
             update(compile(conversationTemplate)({ room, owner, conversation, user }));
             menuHelper.defineMenu();
-
           });
       });
     // get messages from conversation

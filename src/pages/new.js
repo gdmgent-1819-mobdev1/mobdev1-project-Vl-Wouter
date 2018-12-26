@@ -69,7 +69,6 @@ const createRoom = () => {
     .then((photoUrl) => {
       photo = photoUrl.urls.full;
       const room = new Room(directions, price, details, photo, extra);
-      console.log(room);
       storeRoom(room)
         .then(() => window.location.replace('#/rooms/list'));
     });

@@ -5,6 +5,6 @@
     },
     "rules":{
         "linebreak-style": 0,
-        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
     }
 }

@@ -222,10 +222,10 @@ const getRandomRoom = () => {
 const getMessages = (user) => {
   return new Promise(
     (resolve, reject) => {
-        db.ref('/messages').orderByChild(user.type).equalTo(user.id).on('value', (snapshot) => {
-          const messages = snapshot.val();
-          resolve(messages);
-        });
+      db.ref('/messages').orderByChild(user.type).equalTo(user.id).on('value', (snapshot) => {
+        const messages = snapshot.val();
+        resolve(messages);
+      });
     },
   );
 };
@@ -239,9 +239,9 @@ const getConversation = (combinedid) => {
           resolve(conversation);
         })
         .catch(error => reject(error));
-    }
-  )
-}
+    },
+  );
+};
 
 export default {
   getRooms,

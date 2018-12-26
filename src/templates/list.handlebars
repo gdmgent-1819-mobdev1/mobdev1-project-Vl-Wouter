@@ -1,11 +1,11 @@
 <div class="container container--fill filter filter--up" id="filters">
   <div class="container">
     <h1>Filters</h1>
-    <form action="" class="form">
+    <form action="" method='GET' class="form">
       <div class="row">
         <div class="col-sm-12">
           <p class='text-bold text-primary'>Prijs</p>
-          <p>Tussen <input type="number" id="minPrice" class='form__input form__input--inline' maxlength="4"> en <input type="number" id="maxPrice" class='form__input form__input--inline' maxlength="4"> euro.</p>
+          <p>Tussen <input type="number" id="minPrice" class='form__input form__input--inline'> en <input type="number" id="maxPrice" class='form__input form__input--inline'> euro.</p>
         </div>
         <div class="col-sm-12">
           <p class="text-bold text-primary">Afstand</p>
@@ -13,11 +13,14 @@
         </div>
         <div class="col-sm-12">
           <p class="text-bold text-primary">Type</p>
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <input type="radio" name="filterType" id="" value="Kamer"><span>Kamer</span>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <input type="radio" name="filterType" id="" value="Studio"><span>Studio</span>
+          </div>
+          <div class="col-sm-4">
+            <input type="radio" name="filterType" id="" value="All" checked><span>Beide</span>
           </div>
         </div>
         <div class="col-sm-12">
@@ -25,7 +28,7 @@
           <p><input type="number" id="filterArea" class='form__input form__input--inline'> m²</p>
         </div>
         <div class="col-sm-12">
-          <input type="submit" value="Filter" class='btn btn--large btn--primary'>
+          <input type="submit" id='addFilters' value="Filter" class='btn btn--large btn--primary'>
         </div>
       </div>
     </form>
