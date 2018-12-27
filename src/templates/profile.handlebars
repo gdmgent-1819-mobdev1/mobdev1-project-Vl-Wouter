@@ -18,11 +18,13 @@
       {{user.type}}</p>
   </div>
   <div class="row">
+    {{#if student}}
     <div class="col-sm-12">
-      <button class='btn btn--large btn--primary'>Favorieten</button>
+      <a href="#/favorites"><button class='btn btn--large btn--primary'>Favorieten</button></a>
     </div>
+    {{/if}}
     <div class="col-sm-12">
-      <button class='btn btn--large btn--secondary'>Berichten</button>
+      <a href="#/messages"><button class='btn btn--large btn--secondary'>Berichten</button></a>
     </div>
   </div>
 </section>

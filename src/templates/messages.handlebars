@@ -1,16 +1,22 @@
 {{> header}}
-<div class="container--fill h-90">
+<div class="container container--nohead h-90">
 {{#if messages}}
 <div class="row">
   {{#each messages}}
-    <div class="col-sm-12">
-      <h5>{{this.owner}}</h5>
+  <div class="col-sm-12">
+    <a href="#/messages/{{@key}}">
+      <p class='text-bold text-primary'>{{this.from.name}}</p>
+      <p>{{this.room}}</p>
+    </a>   
     </div>
   {{/each}}
 </div>
 {{else}}
   <div class="container container--nohead h-100 flex flex--col flex--center">
     <p>Helaas, er zijn geen berichten op dit moment</p>
+    {{#if studentMode}}
+    <p>Ga naar <a href="#/rooms/list">de lijst met koten</a> om een nieuw bericht te sturen</p>
+    {{/if}}
   </div>
 {{/if}}
 </div>

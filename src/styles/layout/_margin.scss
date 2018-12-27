@@ -6,6 +6,10 @@
     .m-#{$direction}-#{$i*10} {
       margin-#{$direction}: #{$i * $interval};
     }
+
+    .p-#{$direction}-#{$i*10} {
+      padding-#{$direction}: #{$i * $interval};
+    }
   }
 }
 
@@ -15,6 +19,10 @@
 
 .p-0 {
   padding: 0;
+}
+
+.m-0 {
+  margin: 0;
 }
 
 @include genMargin("top");

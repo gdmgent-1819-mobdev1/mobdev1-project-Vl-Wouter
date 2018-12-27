@@ -164,11 +164,13 @@ export default () => {
               update(compile(listTemplate)({ rooms, ownerMode: false }));
               menuHelper.defineMenu();
               defineFilterMenu();
+              dataHelper.checkUnread(user);
             });
         } else {
           const rooms = prepareOwnedRooms(values[1], user);
           update(compile(listTemplate)({ rooms, ownerMode: true }));
           menuHelper.defineMenu();
+          dataHelper.checkUnread(user);
         }
       });
   } else {

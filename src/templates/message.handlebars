@@ -1,0 +1,42 @@
+{{> header}}
+<div class="container--fill h-90">
+  <header class="message__header primary">
+    <div class="container container--nohead text-light p-top-10">
+      <h2 class='m-0'>{{message.room}}</h2>
+      <div class="row">
+        <div class="col-sm-6">
+          <p>{{message.from.name}}</p>
+        </div>
+        <div class="col-sm-6">
+          <p>{{time}}</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="message__actions secondary">
+    <div class="row">
+      <div class="col-sm-12">
+        <a href='#/messages/new?reply_id={{messageId}}'><button class="btn btn--large text-light">Beantwoorden</button></a>
+      </div>
+    </div>
+  </section>
+  <main class="message-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <p>{{message.message}}</p>
+        </div>
+      </div>
+      {{#if reply}}
+      <div class="row">
+        <div class="col-sm-10 text-secondary">
+          <p>Dit bericht is een antwoord op:</p>
+          <p class='text-italic'>{{reply.message}}</p>
+          <p>Van: {{reply.from.name}}</p>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </main>
+</div>
+{{> footer}}

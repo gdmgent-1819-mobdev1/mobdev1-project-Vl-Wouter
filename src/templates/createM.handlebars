@@ -1,0 +1,28 @@
+{{>header}}
+<div class="container container--nohead h-90">
+  <div class="row">
+    <h2>Nieuw Bericht</h2>
+  </div>
+  <div class="row">
+    <form action="" class="form">
+      <div class="form__field col-sm-12">
+        <label for="to">Aan:</label>
+        <input type="text" id="to" class='form__input' value='{{messagedata.to.name}}'>
+        <input type="hidden" id='toId' value='{{messagedata.to.id}}'>
+      </div>
+      <div class="form__field col-sm-12">
+        <label for="subject">Kamer</label>
+        <input type="text" id="subject" class='form__input' value='{{#if messagedata.reply_to}}RE: {{/if}}{{messagedata.room}}'>
+      </div>
+      <input type="hidden" id='reply_id' value='{{messagedata.reply_to}}'>
+      <div class="form__field col-sm-12">
+        <label for="message">Bericht</label>
+        <textarea class='form__input' name="" id="message" cols="30" rows="10" class='h-30'></textarea>
+      </div>
+      <div class="form__field col-sm-12">
+        <input type="submit" value="Verzenden" id='sendMessage' class='btn btn--large btn--primary'>
+      </div>
+    </form>
+  </div>
+</div>
+{{>footer}}

@@ -28,7 +28,7 @@ export default () => {
         const fav = values[2];
         let ownerMode;
         room.info.owner === user.id ? ownerMode = true : ownerMode = false;
-        update(compile(detailTemplate)({ user, room, fav, ownerMode }));
+        update(compile(detailTemplate)({ user, room, fav, ownerMode, roomId }));
         menuHelper.defineMenu();
         if (fav) {
           const delFavBtn = document.querySelector('#delFavorite');

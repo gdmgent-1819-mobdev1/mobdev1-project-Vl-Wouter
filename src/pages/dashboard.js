@@ -1,6 +1,6 @@
 import { compile } from 'handlebars';
 import update from '../helpers/update';
-import { getInstance, getDb } from '../firebase/firebase';
+import { getInstance } from '../firebase/firebase';
 import menuHelper from '../helpers/nav-functions';
 import dataHelper from '../helpers/data-functions';
 
@@ -21,11 +21,12 @@ export default () => {
         const user = values[0];
         const rooms = values[1];
         const featured = values[2];
-        if(user.type === 'owner') {
+        if (user.type === 'owner') {
           window.location.replace('#/rooms/list');
         } else {
           update(compile(dashTemplate)({ user, rooms, featured }));
           menuHelper.defineMenu();
+          dataHelper.checkUnread(user);
         }
       });
   } else {

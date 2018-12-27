@@ -201,7 +201,7 @@ const removeFavorite = (room, user) => {
 /**
  * Gets a list of rooms and returns a random room.
  */
-const getRandomRoom = () => {
+const getRandomRoom = () => { 
   return new Promise(
     (resolve, reject) => {
       getRooms()
@@ -222,7 +222,7 @@ const getRandomRoom = () => {
 const getMessages = (user) => {
   return new Promise(
     (resolve, reject) => {
-      db.ref('/messages').orderByChild(user.type).equalTo(user.id).on('value', (snapshot) => {
+      db.ref('/messages').orderByChild('/to/id').equalTo(user.id).on('value', (snapshot) => {
         const messages = snapshot.val();
         resolve(messages);
       });
@@ -230,17 +230,73 @@ const getMessages = (user) => {
   );
 };
 
-const getConversation = (combinedid) => {
+/**
+ * Returns all details of a message
+ * @param {*} messageId id of message
+ */
+const getMessageDetail = (messageId) => {
   return new Promise(
     (resolve, reject) => {
-      db.ref(`messages/${combinedid}`).once('value')
+      db.ref(`/messages/${messageId}`).once('value')
         .then((snapshot) => {
-          const conversation = snapshot.val();
-          resolve(conversation);
+          resolve(snapshot.val());
         })
         .catch(error => reject(error));
     },
   );
+};
+
+/**
+ * Extension for checkUnread. Will send a notification when user has them enabled
+ */
+const notify = () => {
+  if ('Notification' in window) {
+    const notifText = 'Je hebt nog ongelezen berichten. Klik hier om ze te bekijken!';
+    const notifIcon = '../../src/assets/SVG/Icon.svg';
+    let notification;
+    if (Notification.permission === 'granted') {
+      notification = new Notification('Kotlife', { body: notifText, icon: notifIcon });
+    } else if (Notification.permission !== 'denied') {
+      Notification.requestPermission((permission) => {
+        if (permission === 'granted') {
+          notification = new Notification('Kotlife', { body: notifText, icon: notifIcon });
+        }
+      });
+    }
+
+    setTimeout(notification.close.bind(notification), 4000);
+    notification.onclick = () => {
+      window.location.replace('#/messages');
+    };
+  }
+};
+
+/**
+ * Checks for unread messages by user
+ * @param {Object} user user object
+ */
+const checkUnread = (user) => {
+  getMessages(user)
+    .then((messages) => {
+      const ids = Object.keys(messages);
+      let unread = [];
+      ids.forEach((id) => {
+        if (!messages[id].read) {
+          unread.push(id);
+        }
+      });
+      if(unread.length > 0) {
+        notify(); 
+      }
+    });
+};
+
+/**
+ * Gets a value from an element
+ * @param {string} selector selector for said element
+ */
+const getValue = (selector) => {
+  return document.querySelector(selector).value;
 };
 
 export default {
@@ -255,5 +311,7 @@ export default {
   getSchoolInfo,
   checkFavorite,
   getMessages,
-  getConversation,
+  getMessageDetail,
+  getValue,
+  checkUnread,
 };
