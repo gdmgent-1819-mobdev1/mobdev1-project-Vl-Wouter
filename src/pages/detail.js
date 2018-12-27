@@ -2,14 +2,25 @@
 import { compile } from 'handlebars';
 import update from '../helpers/update';
 import menuHelper from '../helpers/nav-functions';
-import { getInstance } from '../firebase/firebase';
+import { getInstance, getDb } from '../firebase/firebase';
 import dataHelper from '../helpers/data-functions';
 
 // Firebase
 const firebase = getInstance();
+const db = getDb();
 
 // Import the template to use
 const detailTemplate = require('../templates/detail.handlebars');
+
+const deleteRoom = (id) => {
+  return new Promise(
+    (resolve, reject) => {
+      db.ref(`rooms/${id}`).remove()
+        .then(resolve(null))
+        .catch(error => reject(error));
+    },
+  );
+};
 
 export default () => {
   if (firebase.auth().currentUser) {
@@ -30,6 +41,10 @@ export default () => {
         room.info.owner === user.id ? ownerMode = true : ownerMode = false;
         update(compile(detailTemplate)({ user, room, fav, ownerMode, roomId }));
         menuHelper.defineMenu();
+        document.querySelector('#deleteRoom').addEventListener('click', () => {
+          deleteRoom(roomId)
+            .then(window.location.replace('#/rooms/list'));
+        });
         if (fav) {
           const delFavBtn = document.querySelector('#delFavorite');
           delFavBtn.addEventListener('click', () => {
