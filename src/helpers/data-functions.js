@@ -278,15 +278,17 @@ const notify = () => {
 const checkUnread = (user) => {
   getMessages(user)
     .then((messages) => {
-      const ids = Object.keys(messages);
-      let unread = [];
-      ids.forEach((id) => {
-        if (!messages[id].read) {
-          unread.push(id);
+      if (messages) {
+        const ids = Object.keys(messages);
+        const unread = [];
+        ids.forEach((id) => {
+          if (!messages[id].read) {
+            unread.push(id);
+          }
+        });
+        if (unread.length > 0) {
+          notify();
         }
-      });
-      if(unread.length > 0) {
-        notify(); 
       }
     });
 };

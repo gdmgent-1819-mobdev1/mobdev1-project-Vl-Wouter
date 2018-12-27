@@ -27,10 +27,10 @@
           {{#if ownerMode}}
           <div class="row">
             <div class="col-sm-6">
-              <button class="btn btn--large text-light">Verwijder</button>
+              <button class="btn btn--large text-light" id='deleteRoom'>Verwijder</button>
             </div>
             <div class="col-sm-6">
-              <a href=""><button class="btn btn--large text-light">Bewerken</button></a>
+              <a href="#/rooms/new?edit={{roomId}}"><button class="btn btn--large text-light">Bewerken</button></a>
             </div>
           </div>
           {{else}}

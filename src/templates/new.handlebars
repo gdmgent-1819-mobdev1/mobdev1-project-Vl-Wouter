@@ -90,6 +90,9 @@
       <div class="form__field col-sm-12">
         <input type="submit" value="Toevoegen" id="addKot" class="btn btn--large btn--primary">
       </div>
+      {{#if editMode}}
+      <input type="hidden" id='editId' value='{{edit}}'>
+      {{/if}}
     </div>
   </form>
   <a href="#/rooms/list" class='btn btn--large text-danger'>Back</a>

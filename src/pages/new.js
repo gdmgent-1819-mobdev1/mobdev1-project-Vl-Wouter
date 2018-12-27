@@ -3,6 +3,7 @@ import update from '../helpers/update';
 import { getInstance, getDb } from '../firebase/firebase';
 import { Room } from '../helpers/classes';
 import tokens from '../config';
+import dataHelper from '../helpers/data-functions';
 
 const firebase = getInstance();
 const db = getDb();
@@ -23,6 +24,16 @@ const storeRoom = (room) => {
   );
 };
 
+const updateRoom = (room, id) => {
+  return new Promise(
+    (resolve, reject) => {
+      db.ref(`rooms/${id}`).update(room)
+        .then(resolve(null))
+        .catch(error => reject(error));
+    },
+  );
+};
+
 const generatePhotoUrl = () => {
   return new Promise(
     (resolve, reject) => {
@@ -31,9 +42,9 @@ const generatePhotoUrl = () => {
           const photo = response.json();
           resolve(photo);
         }, error => reject(error));
-    }
+    },
   );
-}
+};
 
 const createRoom = () => {
   const directions = {
@@ -69,10 +80,16 @@ const createRoom = () => {
     .then((photoUrl) => {
       photo = photoUrl.urls.full;
       const room = new Room(directions, price, details, photo, extra);
-      storeRoom(room)
-        .then(() => window.location.replace('#/rooms/list'));
+      if (document.querySelector('#editId')) {
+        const roomId = getValue('#editId');
+        updateRoom(room, roomId)
+          .then(window.location.replace(`#/rooms/${roomId}`));
+      } else {
+        storeRoom(room)
+          .then(() => window.location.replace('#/rooms/list'));
+      }
     });
-}
+};
 
 const calcCoords = (input) => {
   const address = input.value;
@@ -83,27 +100,70 @@ const calcCoords = (input) => {
           const data = response.json();
           resolve(data);
         }, error => reject(error));
-    }
+    },
   );
-}
+};
+
+const setValue = (selector, value) => {
+  document.querySelector(selector).value = value;
+};
+
+const fillFields = (room) => {
+  setValue('#address', room.directions.address);
+  calcCoords(document.querySelector('#address'))
+    .then(() => {
+      setValue('#price', room.price.price);
+      setValue('#deposit', room.price.deposit);
+      setValue('#opp', room.info.surface);
+      setValue('#verdieping', room.info.floor);
+      setValue('#personen', room.info.people);
+      setValue('#beschrijfMeubels', room.details.furniture_description);
+      setValue('#totaal', room.info.total);
+      setValue('#comment', room.extra);
+    });
+};
 
 export default () => {
   if (firebase.auth().currentUser) {
-    update(compile(newTemplate)({ }));
-    const addKotBtn = document.querySelector('#addKot');
-    const addressField = document.querySelector('#address');
-    addressField.addEventListener('blur', () => {
-      calcCoords(addressField)
-        .then((coords) => {
-          // document.querySelector('#coords').innerHTML = coords;
-          document.querySelector('#lng').innerHTML = coords.features[0].center[1];
-          document.querySelector('#lat').innerHTML = coords.features[0].center[0];
-        })
-    });
-    addKotBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      createRoom();
-    });
+    const query = window.location.href.split('?')[1];
+    if (query) {
+      const edit = query.split('=')[1];
+      dataHelper.getRoomInfo(edit)
+        .then((room) => {
+          update(compile(newTemplate)({ edit, editMode: true }));
+          fillFields(room);
+          const addKotBtn = document.querySelector('#addKot');
+          const addressField = document.querySelector('#address');
+          addressField.addEventListener('blur', () => {
+            calcCoords(addressField)
+              .then((coords) => {
+                // document.querySelector('#coords').innerHTML = coords;
+                document.querySelector('#lng').innerHTML = coords.features[0].center[0];
+                document.querySelector('#lat').innerHTML = coords.features[0].center[1];
+              });
+          });
+          addKotBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            createRoom();
+          });
+        });
+    } else {
+      update(compile(newTemplate)({ }));
+      const addKotBtn = document.querySelector('#addKot');
+      const addressField = document.querySelector('#address');
+      addressField.addEventListener('blur', () => {
+        calcCoords(addressField)
+          .then((coords) => {
+            // document.querySelector('#coords').innerHTML = coords;
+            document.querySelector('#lng').innerHTML = coords.features[0].center[0];
+            document.querySelector('#lat').innerHTML = coords.features[0].center[1];
+          });
+      });
+      addKotBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        createRoom();
+      });
+    }
   } else {
     window.location.replace('/');
   }
