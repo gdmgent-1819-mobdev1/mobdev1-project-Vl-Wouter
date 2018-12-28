@@ -18,7 +18,7 @@ const gameTemplate = require('../templates/game.handlebars');
 const prepareRooms = (rooms, user) => {
   return new Promise(
     (resolve, reject) => {
-      const solvedArray = [];
+      let solvedArray = [];
       const favPromise = dataHelper.getFavorites(user.id);
       const schoolPromise = dataHelper.getSchoolInfo(user.school);
 
@@ -33,6 +33,7 @@ const prepareRooms = (rooms, user) => {
             if (!favorites[i] || favorites[i].room_id !== room.room_id) {
               solvedArray.push(room);
             }
+            solvedArray = dataHelper.sortRooms(solvedArray, 'asc');
           });
           resolve(solvedArray);
         })

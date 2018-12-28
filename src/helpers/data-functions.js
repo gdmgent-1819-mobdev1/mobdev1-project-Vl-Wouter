@@ -301,6 +301,27 @@ const getValue = (selector) => {
   return document.querySelector(selector).value;
 };
 
+const compareRooms = (a, b) => {
+  if (a.distance < b.distance) {
+    return -1;
+  }
+  if (a.distance > b.distance) {
+    return 1;
+  }
+  return 0;
+};
+
+const sortRooms = (rooms, direction) => {
+  let sorted = [];
+  if (direction === 'asc') {
+    sorted = rooms.sort(compareRooms);
+  } else {
+    sorted = rooms.sort(compareRooms);
+    sorted = sorted.reverse();
+  }
+  return sorted;
+};
+
 export default {
   getRooms,
   getUserInfo,
@@ -316,4 +337,5 @@ export default {
   getMessageDetail,
   getValue,
   checkUnread,
+  sortRooms,
 };

@@ -49,8 +49,11 @@
         <a href="#/rooms/new"><button class='btn btn--large btn--primary text-light' >Nieuw</button> </a>
       </div>
       {{else}}
-      <div class="col-sm-12">
+      <div class="col-sm-6">
         <button class='btn btn--large btn--primary' id='filterBtn'><span>Filter</span></button>
+      </div>
+      <div class="col-sm-6">
+        <button class="btn btn--large btn--primary" id="sortBtn"><span>{{#if sortAsc}}<i class="fas fa-arrow-up"></i>{{/if}}{{#if sortDesc}}<i class="fas fa-arrow-down"></i>{{/if}} Afstand</span></button>
       </div>
       {{/if}}
     </div>

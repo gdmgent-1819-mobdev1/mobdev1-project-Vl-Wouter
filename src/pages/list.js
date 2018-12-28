@@ -62,9 +62,19 @@ const applyFilters = () => {
   queryStringArray.push(`type=${type}`);
   arrayPush(queryStringArray, surface, 'surface');
 
-  const query = `?${queryStringArray.join('&')}`;
+  const query = `?filter&${queryStringArray.join('&')}`;
   window.location.replace(`#/rooms/list${query}`);
 };
+
+const getSearchParams = () => {
+  const query = window.location.href.split('?')[1];
+  if(query) {
+    const params = query.split('&');
+    return params;
+  } else {
+    return null;
+  }
+}
 
 /**
  * Applies filters to the current array of rooms
@@ -84,12 +94,11 @@ const filterRooms = (rooms) => {
       surface: '',
     };
     params.forEach((param) => {
-      const split = param.split('=');
-      filters[split[0]] = split[1];
+      const [key, value] = param.split('=');
+      filters[key] = value;
     });
 
     rooms.forEach((room) => {
-      console.log(room.price.price);
       if (room.price.price > filters.minPrice && room.price.price < filters.maxPrice) {
         if (room.distance > filters.minDist && room.distance < filters.maxDist) {
           if (filters.type === 'All' || room.info.type === filters.type) {
@@ -118,8 +127,23 @@ const prepareStudentRooms = (rooms, user) => {
             const lng = parseFloat(room.directions.coords.lng, 10);
             room.distance = distance([school.directions.coords.lng, school.directions.coords.lat], [lng, lat], { units: 'kilometers' }).toFixed(2);
           });
-          const filteredRooms = filterRooms(rooms);
-          resolve(filteredRooms);
+          let finalRooms = [];
+          if (window.location.href.split('?')[1]) {
+            const query = window.location.href.split('?')[1];
+            if (query.split('&')[0] === 'filter') {
+              finalRooms = filterRooms(rooms);
+            } else {
+              const sortDir = query.split('&')[1].split('=')[1];
+              if (sortDir === 'asc') {
+                finalRooms = dataHelper.sortRooms(rooms, 'asc');
+              } else {
+                finalRooms = dataHelper.sortRooms(rooms, 'desc');
+              }
+            }
+          } else {
+            finalRooms = rooms;
+          }
+          resolve(finalRooms);
         })
         .catch(error => reject(error));
     },
@@ -152,6 +176,16 @@ const defineFilterMenu = () => {
 
 export default () => {
   if (firebase.auth().currentUser) {
+    let sortAsc = false;
+    let sortDesc = false;
+    if (window.location.href.split('?')[1] && window.location.href.split('?')[1].split('&')[0] === 'sort') {
+      const sortType = window.location.href.split('?')[1].split('&')[1].split('=')[1];
+      switch (sortType) {
+        case 'asc': sortAsc = true; break;
+        case 'desc': sortDesc = true; break;
+        default: return;
+      }
+    }
     const userPromise = dataHelper.getUserInfo(firebase.auth().currentUser.uid);
     const roomPromise = dataHelper.getRooms();
 
@@ -161,10 +195,18 @@ export default () => {
         if (user.type === 'student') {
           prepareStudentRooms(values[1], user)
             .then((rooms) => {
-              update(compile(listTemplate)({ rooms, ownerMode: false }));
+              update(compile(listTemplate)({ rooms, ownerMode: false, sortAsc, sortDesc }));
               menuHelper.defineMenu();
               defineFilterMenu();
               dataHelper.checkUnread(user);
+              document.querySelector('#sortBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!window.location.href.split('?')[1] || window.location.href.split('?')[1].split('&')[1] === 'dir=desc') {
+                  window.location.replace('#/rooms/list?sort&dir=asc');
+                } else {
+                  window.location.replace('#/rooms/list?sort&dir=desc');
+                }
+              });
             });
         } else {
           const rooms = prepareOwnedRooms(values[1], user);
