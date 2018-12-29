@@ -42,5 +42,5 @@
 * [x] Browserondersteuning (Firefox Developer Edition + Chrome)
 * [x] Mobile first
 * [x] Gebruiksvriendelijk
-* [ ] Responsive Design
+* [x] Responsive Design
 * [x] Navigo en Handlebars

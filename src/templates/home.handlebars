@@ -1,10 +1,16 @@
-<div class="container container--fill flex flex--col flex--justify-around flex--center">
-  <div class="title col-sm-10 text--center">
+<div class="container container--nohead container--fill flex flex--col flex--justify-around flex--center">
+  <div class="title col-sm-10 col-xl-5 m-auto text--center">
     <img src="{{ logo }}" alt="Logo">
     <p class="text-primary">Your way of life</p>
   </div>
-  <div class="buttons col-sm-10 flex flex--col">
-    <a href="#/login" class='text-light btn btn--large btn--primary' data-navigo >Ik ben al een gebruiker</a>
-    <a href="#/register" class='btn btn--large btn--primary text-light' data-navigo >Ik wil een nieuw account</a>
+  <div class="buttons col-sm-10 col-xl-5 m-auto flex flex--col">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <a href="#/login" data-navigo ><button class='text-light btn btn--large btn--primary'>Ik ben al een gebruiker</button></a>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <a href="#/register" data-navigo ><button class='text-light btn btn--large btn--primary'>Ik wil een nieuw account</button></a>
+      </div>
+    </div>
   </div>
 </div>

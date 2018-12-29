@@ -19,11 +19,11 @@
   </div>
   <div class="row">
     {{#if student}}
-    <div class="col-sm-12">
+    <div class="col-sm-12 col-md-6">
       <a href="#/favorites"><button class='btn btn--large btn--primary'>Favorieten</button></a>
     </div>
     {{/if}}
-    <div class="col-sm-12">
+    <div class="col-sm-12 {{#if student}}col-md-6{{/if}}">
       <a href="#/messages"><button class='btn btn--large btn--secondary'>Berichten</button></a>
     </div>
   </div>

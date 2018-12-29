@@ -1,4 +1,6 @@
-<div class="container flex flex--center">
+<div class="container container--nohead flex flex--center h-100">
+  <div class="col-sm-12 col-md-12 col-xl-6">
+
     <form class='form'>
         <div class="row">
 
@@ -14,23 +16,23 @@
                 <label for="email">Email</label>
                 <input type="email" id="mail" placeholder="jan.peeters@provider.com" class='form__input' required>
             </div>
-            <div class="form__field col-sm-12">
+            <div class="form__field col-sm-12 col-md-6">
                 <label for="pass">Wachtwoord</label>
                 <input type="password" id="pass" class='form__input' required>
             </div>
-            <div class="form__field col-sm-12">
+            <div class="form__field col-sm-12 col-md-6">
                 <label for="pass">Bevestig wachtwoord</label>
                 <input type="password" id="confirmpass" class='form__input' required>
             </div>
-            <div class="form__field col-sm-12">
+            <div class="form__field col-sm-12 col-md-6">
                 <label for="address">Adres</label>
                 <input type="text" id="address" placeholder="Dorpsplein 18" class='form__input' required>
             </div>
-            <div class="form__field col-sm-4">
+            <div class="form__field col-sm-4 col-md-2">
                 <label for="postcode">Postcode</label>
                 <input type="number" id="postcode" placeholder="3000" size='4' class='form__input' required>
             </div>
-            <div class="form__field col-sm-8">
+            <div class="form__field col-sm-8 col-md-4">
                 <label for="city">Gemeente</label>
                 <input type="text" id="city" placeholder="Leuven" class='form__input' required>
             </div>
@@ -39,7 +41,7 @@
                 <input type="tel" id="phone" placeholder="+324 71 58 76 84" class='form__input' required>
                 <span class='form__field--note'>+324 71 58 76 48</span>
             </div>
-            <div class="form__field row">
+            <div class="form__field row col-sm-12 col-md-6">
                 <div class="col-sm-12">
                     <span>Ik ben...</span>
                 </div>
@@ -50,7 +52,7 @@
                     <input type="radio" name='type' value='owner' checked>eigenaar<br>
                 </div>
             </div>
-            <div class="form__field col-sm-12 form__field--studentonly hidden">
+            <div class="form__field col-sm-12 col-md-6 form__field--studentonly hidden">
                 <label for="school">School</label>
                 <select name="school" id="school" class='form__input'>
                     <option disabled selected>Kies een school</option>
@@ -69,4 +71,5 @@
             </div>
         </div>
     </form>
+  </div>
 </div>
