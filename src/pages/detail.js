@@ -22,15 +22,22 @@ const deleteRoom = (id) => {
   );
 };
 
+/**
+ * Defines the share button and opens the share dialog when clicked
+ */
+const defineShare = () => {
+  const fbBtn = document.querySelector('.fb-share-button');
+  const pageUrl = window.location.href;
+
+  fbBtn.addEventListener('click', () => {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,'facebook-share-dialog', 'width=800, height=600');
+    return false;
+  });
+};
+
 export default () => {
   if (firebase.auth().currentUser) {
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+    
     
     // get room and user id
     const userId = firebase.auth().currentUser.uid;
@@ -49,6 +56,7 @@ export default () => {
         room.info.owner === user.id ? ownerMode = true : ownerMode = false;
         update(compile(detailTemplate)({ user, room, fav, ownerMode, roomId }));
         menuHelper.defineMenu();
+        defineShare();
         document.querySelector('#deleteRoom').addEventListener('click', () => {
           deleteRoom(roomId)
             .then(window.location.replace('#/rooms/list'));

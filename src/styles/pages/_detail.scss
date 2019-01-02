@@ -26,6 +26,25 @@
   }
 }
 
+.fb-share-button {
+  color: #fff;
+  background-color: #3b5998;
+  border-radius: 3px;
+  font-weight: 700;
+  padding: 5px 8px;
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    margin: 0 1%;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: #213A6F;
+  }
+}
+
 @media(min-width: 961px) {
   .detail {
     &__header {
